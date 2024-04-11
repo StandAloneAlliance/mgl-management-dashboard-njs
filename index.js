@@ -12,19 +12,11 @@ const port = process.env.PORT || 3000;
 /* router */
 const loginRouter = require('./app/routes/login');
 const userRouter = require('./app/routes/user');
+const registerUser = require('./app/routes/register')
 
 app.listen(port, () => {
     console.log('Server disponibile su `http://localhost:3000`')
 })
-
-sequelize.sync()
-    .then(() => {
-        console.log('Tabella users creata con successo')
-    })
-    .catch(err => {
-        console.log('Errore durante la creazione della tabella')
-    })
-
 
 sequelize.authenticate().then(() => {
     console.log('Connessione al database stabilita con successo')
@@ -44,5 +36,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(registerUser)
 app.use(loginRouter);
 app.use('/user', checkUserLogin(), userRouter);
