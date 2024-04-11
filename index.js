@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 
 /* router */
 const loginRouter = require('./app/routes/login');
-const userRouter = require('./app/routes/user');
+const homeRouter = require('./app/routes/home');
 const registerUser = require('./app/routes/register')
 
 app.listen(port, () => {
@@ -36,6 +36,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+// app.use('/user', checkUserLogin(), userRouter);
+app.use(homeRouter)
 app.use(registerUser)
 app.use(loginRouter);
-app.use('/user', checkUserLogin(), userRouter);
