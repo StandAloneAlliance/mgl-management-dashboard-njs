@@ -8,14 +8,18 @@ router.get('/login', (req, res) => {
     res.render('login', { message: req.flash('loginFallito') });
 });
 
-// router.post('/login', passport.authenticate('local', {
+// router.post('/login', passport.authenticate('local-login', {
 //     successRedirect: '/user/dashboard',
 //     failureRedirect: '/login',
 //     failureFlash: true
 // }));
 
 router.post('/login',
-    passport.authenticate('local-login', { failureRedirect: '/login' }),
+    passport.authenticate('local-login', {
+        successRedirect: '/user/dashboard',
+        failureRedirect: '/login',
+        failureFlash: true
+    }),
     function (req, res) {
         res.redirect('/user/dashboard');
     });

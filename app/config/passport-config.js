@@ -1,24 +1,33 @@
 const passport = require('passport')
-const { where } = require('sequelize')
 const LocalStrategy = require('passport-local').Strategy
 const User = require('../../models/index').User
 
 passport.use('local-login', new LocalStrategy(
-    async (username, password, done) => {
+    async (email, password, done) => {
         try {
-            const user = await User.findOne({ where: { username: username } })
-            console.log(user)
+            const user = await User.getUserByEmail({ email: email })
             if (!user) {
-                return done(null, false, { message: 'Username non valido' })
+                return done(null, false, { message: 'Email non valida' })
             }
 
-            const isValidPw = user.isValidPassword(password)
-            console.log(isValidPw)
-            if (!isValidPw) {
-                return done(null, false, { message: 'Password non valida' })
-            }
+            User.comparePassword(password, user.password, function (err, isMatch) {
+                if (err) throw err;
+                if (isMatch) {
+                    return done(null, user);
+                } else {
+                    console.log('Invalid Password');
+                    return done(null, false, {
+                        message: 'Invalid Password'
+                    });
+                }
+            });
 
-            return done(null, user)
+            // const isValidPw = user.isValidPassword(password)
+            // if (!isValidPw) {
+            //     return done(null, false, { message: 'Password non valida' })
+            // }
+
+            // return done(null, user)
         } catch (error) {
             return done(error)
         }
@@ -27,18 +36,13 @@ passport.use('local-login', new LocalStrategy(
 
 passport.serializeUser((user, done) => {
     done(null, user.id)
-    console.log(user.id)
 })
 
 passport.deserializeUser(async (id, done) => {
     try {
-        console.log(User)
-        console.log('Deserializing user with id:', id);
-        const user = await User.findOne({ where: { id: id } })
-        console.log('Deserialized user:', user);
+        const user = await User.findByPk(id)
         done(null, user)
     } catch (error) {
-        console.error('Error deserializing user:', error);
         done(error)
     }
 })

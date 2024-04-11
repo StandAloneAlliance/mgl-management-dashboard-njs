@@ -42,4 +42,4 @@ app.use(passport.session());
 app.use(homeRouter)
 app.use(registerUser)
 app.use(loginRouter);
-app.use('/user', isAuth(), dashboard)
+app.use('/user', dashboard)
