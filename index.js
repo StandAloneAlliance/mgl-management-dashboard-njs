@@ -1,13 +1,14 @@
 const express = require('express');
 const session = require('express-session');
+const path = require('path')
 const passport = require('passport');
 const sequelize = require('./app/config/db-connection');
 const db = require('./models/index')
 const checkUserLogin = require('./app/middleware/check-user-login');
 const flash = require('connect-flash');
+const port = process.env.PORT || 3000;
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 /* router */
 const loginRouter = require('./app/routes/login');
@@ -24,9 +25,9 @@ sequelize.authenticate().then(() => {
     .catch(err => {
         console.log('Errore durante la connessione', err)
     })
-
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'app', 'public')));
 app.use(flash());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
