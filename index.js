@@ -27,6 +27,7 @@ sequelize.authenticate().then(() => {
     })
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
 app.use(express.static(path.join(__dirname, 'app', 'public')));
 app.use(flash());
 app.use(express.urlencoded({ extended: true }));
