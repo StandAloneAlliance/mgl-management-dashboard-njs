@@ -4,7 +4,7 @@ const path = require('path')
 const passport = require('passport');
 const sequelize = require('./app/config/db-connection');
 const db = require('./models/index')
-const checkUserLogin = require('./app/middleware/check-user-login');
+const isAuth = require('./app/middleware/check-user-login');
 const flash = require('connect-flash');
 const port = process.env.PORT || 3000;
 
@@ -14,6 +14,7 @@ const app = express();
 const loginRouter = require('./app/routes/login');
 const homeRouter = require('./app/routes/home');
 const registerUser = require('./app/routes/register')
+const dashboard = require('./app/routes/dashboard')
 
 app.listen(port, () => {
     console.log('Server disponibile su `http://localhost:3000`')
@@ -38,7 +39,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use('/user', checkUserLogin(), userRouter);
 app.use(homeRouter)
 app.use(registerUser)
 app.use(loginRouter);
+app.use('/user', isAuth(), dashboard)

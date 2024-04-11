@@ -35,7 +35,7 @@ router.post('/register', async (req, res) => {
             email: email,
             password: hashed_pw
         })
-        res.status(201).send('Utente creato con successo')
+        res.status(200).redirect('/user/dashboard')
     } catch (error) {
         // ALTRIMENTI STAMPO L'ERRORE 500
         console.error(error)
