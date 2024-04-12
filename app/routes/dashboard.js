@@ -4,6 +4,7 @@ const router = express.Router();
 const isAuth = require('../middleware/check-user-login')
 const Customer = require('../../models/index').Customer
 const Course = require('../../models/index').Course
+const getCourses = require('../config/courses_type')
 
 router.get('/dashboard', (req, res) => {
     if (!req.isAuthenticated()) {
@@ -95,6 +96,7 @@ router.get('/dashboard/customers/:id/assign-courses', async (req, res) => {
     }
 
     try {
+        const courses = getCourses()
         // Ottieni l'id del corsista dalla richiesta
         const customerId = req.params.id;
 
@@ -103,7 +105,7 @@ router.get('/dashboard/customers/:id/assign-courses', async (req, res) => {
         // const customer = await Customer.findByPk(customerId);
 
         // Passa le informazioni del corsista alla vista
-        res.render('customers/assign-courses', { customerId: customerId });
+        res.render('customers/assign-courses', { customerId: customerId, courses: courses });
     } catch (error) {
         // Gestisci gli errori qui
         console.error(error);
@@ -129,6 +131,7 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
             direttore_corso,
             docenti_corso,
             inizio_di_svolgimento,
+            fine_svolgimento,
             genere_corso,
             numero_autorizzazione,
             durata_corso,
@@ -146,6 +149,7 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
             direttore_corso: direttore_corso,
             docenti_corso: docenti_corso,
             inizio_di_svolgimento: inizio_di_svolgimento,
+            fine_svolgimento: fine_svolgimento,
             genere_corso: genere_corso,
             numero_autorizzazione: numero_autorizzazione,
             durata_corso: durata_corso,
