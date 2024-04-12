@@ -10,11 +10,17 @@ router.get('/dashboard', (req, res) => {
     res.render('dashboard', { user: req.user })
 })
 
-router.get('/dashboard/customers', (req, res) => {
+router.get('/dashboard/customers', async (req, res) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/login')
     }
-    res.render('customers/index-customers')
+    try {
+        const customers = await Customer.findAll()
+        res.render('customers/index-customers', { customers: customers })
+    } catch (error) {
+        console.error(error)
+        res.status(500).send('Errore del server')
+    }
 })
 
 router.get('/dashboard/customers/create-customers', (req, res) => {
