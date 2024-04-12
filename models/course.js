@@ -31,10 +31,14 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'Valido'
     },
     data_scadenza: DataTypes.DATE,
-    validità: DataTypes.INTEGER
+    validità: DataTypes.INTEGER,
+    created_at: DataTypes.DATE,
+    updated_at: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'Course',
+    timestamps: false,
+    underscored: true,
   });
   return Course;
 };

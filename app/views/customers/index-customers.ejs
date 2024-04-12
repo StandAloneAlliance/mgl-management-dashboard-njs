@@ -18,11 +18,41 @@
                     <p>CF: <%= customer.cfr %>
                     </p>
                     <!-- Aggiungi altri dettagli del cliente come desideri -->
+                    <a href="customers/<%= customer.id %>">Vai al dettaglio del corsista</a>
+                    <a href="customers/<%= customer.id %>/assign-courses">assegna corso al corsista</a>
+                    <form id="deleteForm_<%= customer.id %>" action="/customers/<%= customer.id %>/delete"
+                        method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="button" onclick="confirmDelete('<%= customer.id %>')">Cancella il
+                            corsista</button>
+                    </form>
                 </div>
                 <% }); %>
                     <a href="customers/create-customers">Crea il corsista</a>
         </div>
     </main>
+    <script>
+        function confirmDelete(customerId) {
+            if (confirm('Sei sicuro di voler eliminare questo corsista?')) {
+                // Invia la richiesta DELETE utilizzando JavaScript
+                fetch(`dashboard/customers/${customerId}/delete`, {
+                    method: 'DELETE'
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Ricarica la pagina dopo l'eliminazione
+                            window.location.reload();
+                        } else {
+                            throw new Error('Errore durante l\'eliminazione del corsista');
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        alert('Si è verificato un errore durante l\'eliminazione del corsista');
+                    });
+            }
+        }
+    </script>
 </body>
 
 </html>
