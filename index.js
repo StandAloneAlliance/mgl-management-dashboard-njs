@@ -32,10 +32,12 @@ app.use(express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
 app.use(express.static(path.join(__dirname, 'app', 'public')));
 app.use(flash());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 app.use(session({
     secret: 'chiaveSegreta123',
+    resave: false,
     saveUninitialized: false,
-    resave: false
+    cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
