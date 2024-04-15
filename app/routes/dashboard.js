@@ -1,10 +1,12 @@
 const express = require('express');
 const sequelize = require('../config/db-connection')
+const schedule = require('node-schedule')
+const moment = require('moment')
 const router = express.Router();
-const isAuth = require('../middleware/check-user-login')
 const Customer = require('../../models/index').Customer
 const Course = require('../../models/index').Course
 const getCourses = require('../config/courses_type')
+
 
 router.get('/dashboard', (req, res) => {
     if (!req.isAuthenticated()) {
@@ -116,6 +118,18 @@ router.get('/dashboard/customers/:id/assign-courses', async (req, res) => {
 // ROTTA POST PER L'ASSEGNAZIONE DEL CORSO AL CORSISTA CON UN DETERMINATO ID
 router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) => {
 
+    // FUNZIONE CHE CALCOLA LA DATA DI SCADENZA DIRETTAMENTE CLACLOANDO DATA FINE CORSO CON LA VALIDITà
+    function calculateExpiryDate(endDate, validityYears) {
+        // Parsa la data di fine corso con moment.js
+        const endDateMoment = moment(endDate);
+
+        // Aggiungi il numero di anni di validità alla data di fine corso
+        const expiryDateMoment = endDateMoment.add(validityYears, 'years');
+
+        // Restituisci la data di scadenza
+        return expiryDateMoment.format('YYYY-MM-DD');
+    }
+
     try {
         // Ottieni l'ID del corsista dalla richiesta
         const customerId = req.params.customerId;
@@ -135,8 +149,12 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
             genere_corso,
             numero_autorizzazione,
             durata_corso,
-            status
+            status,
+            data_scadenza,
+            validità
         } = req.body;
+
+        const expiry_date = calculateExpiryDate(fine_svolgimento, validità)
 
         // Crea un nuovo corso nella tabella courses
         const newCourse = await Course.create({
@@ -153,7 +171,9 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
             genere_corso: genere_corso,
             numero_autorizzazione: numero_autorizzazione,
             durata_corso: durata_corso,
-            status: status
+            status: status,
+            data_scadenza: expiry_date,
+            validità: validità
         });
 
         // Ottieni l'ID del corso appena creato
