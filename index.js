@@ -6,9 +6,11 @@ const sequelize = require('./app/config/db-connection');
 const db = require('./models/index')
 const isAuth = require('./app/middleware/check-user-login');
 const flash = require('connect-flash');
+const scheduler = require('./app/commands/update-course-status')
 const port = process.env.PORT || 3000;
 
 const app = express();
+scheduler.startScheduler()
 
 /* router */
 const loginRouter = require('./app/routes/login');
