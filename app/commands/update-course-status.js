@@ -1,37 +1,35 @@
-const cron = require('node-cron')
-const moment = require('moment')
+const moment = require('moment');
 const Course = require('../../models/index').Course
+const { Sequelize } = require('sequelize')
 
-async function checkAndUpdateExpiredCourses() {
-    const today = moment();
-    console.log('Controllo e aggiornamento dei corsi scaduti:', today.format('YYYY-MM-DD HH:mm:ss'));
-
+async function updateCourseStatus() {
     try {
-        // Trova tutti i corsi con data di scadenza inferiore alla data odierna
-        const expiredCourses = await Course.findAll({
+        const today = moment().format('YYYY-MM-DD HH:mm:ss')
+
+        const courses = await Course.findAll({
             where: {
                 data_scadenza: {
-                    [Sequelize.Op.lt]: today.toDate() // Opzione "less than" di Sequelize
+                    [Sequelize.Op.gte]: moment().toDate() // Utilizziamo l'operatore "less than or equal to" per includere anche i corsi scaduti oggi
                 }
             }
-        });
+        }); // Assicurati che il metodo findAll del modello Course restituisca tutti i corsi
 
-        // Aggiorna lo stato dei corsi scaduti a false
-        for (const course of expiredCourses) {
-            await course.update({ status: 'Scaduto' });
-            console.log(`Aggiornato lo stato del corso ${course.id} a scaduto`);
+
+        for (const course of courses) {
+            console.log(moment(course.data_scadenza).format('YYYY-MM-DD HH:mm:ss'));
+            if (moment(course.data_scadenza).isAfter(today)) {
+                await course.update({ status: 'Scaduto' });
+                console.log(`Aggiornato lo stato del corso ${course.id} a Scaduto`);
+            }
+            // Se la data di scadenza è oggi, impostiamo lo status su "Scaduto"
+
+            console.log('Course statuses updated successfully.');
         }
+
     } catch (error) {
-        console.error('Errore durante il controllo e l\'aggiornamento dei corsi scaduti:', error);
+        console.error('Error updating course statuses:', error);
     }
 }
 
 
-const startScheduler = () => {
-    cron.schedule('0 0 * * *', () => {
-        console.log('Esecuzione del task scheduler ogni giorno alle 00:00');
-        checkAndUpdateExpiredCourses();
-    });
-};
-
-module.exports = { startScheduler }
+module.exports = { updateCourseStatus }

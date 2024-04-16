@@ -4,13 +4,22 @@ const path = require('path')
 const passport = require('passport');
 const sequelize = require('./app/config/db-connection');
 const db = require('./models/index')
-const isAuth = require('./app/middleware/check-user-login');
 const flash = require('connect-flash');
-const scheduler = require('./app/commands/update-course-status')
+const update_course_scheduler = require('./app/commands/update-course-status')
+const update_expirating_course_status = require('./app/commands/update-course-status-2')
+const cron = require('node-cron')
 const port = process.env.PORT || 3000;
 
 const app = express();
-scheduler.startScheduler()
+
+// Esegui la funzione updateCourseStatus ogni giorno alle 00:00
+cron.schedule('* * * * *', async () => {
+    console.log('Running the task scheduler daily at 00:00');
+    await update_expirating_course_status.updateExpiratingCourseStatus()
+    await update_course_scheduler.updateCourseStatus();
+})
+
+
 
 /* router */
 const loginRouter = require('./app/routes/login');
