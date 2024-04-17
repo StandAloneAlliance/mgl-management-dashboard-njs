@@ -4,12 +4,13 @@ const { Sequelize } = require('sequelize')
 
 async function updateExpiratingCourseStatus() {
     try {
-        const today = moment().format('YYYY-MM-DD HH:mm:ss')
+        const today = moment()
+        const eightDaysFromNow = moment().add(8, 'days')
 
         const courses = await Course.findAll({
             where: {
                 data_scadenza: {
-                    [Sequelize.Op.lt]: moment().subtract(8, 'days').toDate() // Converti la data di scadenza nel formato corretto
+                    [Sequelize.Op.between]: [today.toDate(), eightDaysFromNow.toDate()] // Converti la data di scadenza nel formato corretto
                 }
             }
         });
