@@ -73,12 +73,13 @@ router.get('/dashboard/customers/:id', async (req, res) => {
         const { id } = req.params;
 
         // TROVO IL CORSISTA NEL DB BASATO SULL'ID
-        const customer = await Customer.findOne({ where: { id: id } });
-
+        const customer = await Customer.findOne({ where: { id: id }, include: { model: Course, through: { attributes: [] } } });
+        const courses = customer.Courses
+        console.log(courses)
         // VERIFICO SE IL CORISTA ESISTE
         if (customer) {
             // SE IL CORSISTA è STATO TROVATO DO IL RENDER SULLA VIEW
-            res.render('customers/customer-details', { customer: customer });
+            res.render('customers/customer-details', { customer: customer, courses: courses });
         } else {
             // Se il corsista non è stato trovato, restituisci un messaggio di errore o reindirizza a una pagina di errore
             res.status(404).send('Corsista non trovato');

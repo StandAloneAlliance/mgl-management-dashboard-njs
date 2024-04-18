@@ -11,7 +11,73 @@
             <h1>Benvenuto nella pagina del corsista <%= customer.name%>
                     <%=customer.surname%>
             </h1>
-            <!-- Inserire i dettagli del corsista -->
+            <div class="cards">
+                <% courses.forEach(course=> { %>
+                    <label id="summary">
+                        <input id="check" type="checkbox" />
+                        <article>
+                            <div class="front">
+                                <header>
+                                    <h2>
+                                        <%= course.nome_corso %> aut. <%= course.numero_autorizzazione %>
+                                    </h2>
+                                </header>
+                            </div>
+                            <div class="back">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <strong>
+                                            <%= course.genere_corso %>
+                                        </strong>
+                                    </li>
+                                    </li>
+                                    <li>N° partecipanti: <strong>
+                                            <%= course.posti_disponibili %>
+                                        </strong></li>
+                                    <li>Città: <%= course.cap_sede_corso %>, <%= course.città_di_svolgimento %> (<%=
+                                                    course.provincia %>)</li>
+                                    <li>Sede: <%= course.indirizzo_di_svolgimento %>
+                                    </li>
+                                    <li>Direttore: <strong>
+                                            <%= course.direttore_corso %>
+                                        </strong></li>
+                                    <li>Docente: <strong>
+                                            <%= course.docenti_corso %>
+                                        </strong></li>
+                                    <li>Data Inizio: <%= new
+                                            Date(course.inizio_di_svolgimento).toLocaleDateString('it-IT') %>
+                                    </li>
+                                    <li>Data Termine: <%= new Date(course.fine_svolgimento).toLocaleDateString('it-IT')
+                                            %>
+                                    </li>
+                                    <li>Durata: <%= course.durata_corso %> ore</li>
+                                    <li>Validità: <%= course.validità %> anni</li>
+                                    <li>Data di scadenza: <%= new Date(course.data_scadenza).toLocaleDateString('it-IT')
+                                            %>
+                                    </li>
+                                    <% if (course.status==='Scaduto' ) { %>
+                                        <li>Stato: <strong style="color: rgb(237, 31, 31)">
+                                                <%= course.status %>
+                                            </strong></li>
+                                        <% } else if (course.status==='In Scadenza' ) { %>
+                                            <li>Stato: <strong style="color: rgb(237, 107, 31)">
+                                                    <%= course.status %>
+                                                </strong></li>
+                                            <% } else if (course.status==='Valido' ) { %>
+                                                <li>Stato: <strong style="color: rgb(19, 184, 4)">
+                                                        <%= course.status %>
+                                                    </strong></li>
+                                                <% } %>
+                                </ul>
+                                <!-- <a href="/admin/courses/edit?customer_id=<%= customer.id %>&course_id=<%= course.id %>">Modifica
+                                    il corso</a> -->
+                            </div>
+                        </article>
+                    </label>
+                    <% }); %>
+            </div>
+
+        </div>
         </div>
     </main>
 </body>
