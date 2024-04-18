@@ -186,7 +186,7 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
         await sequelize.query(assignCourseQuery);
 
         // EFFETTUARE IL REDIRECT ANZICHè IL SEND 
-        res.status(200).send('Corso assegnato con successo al cliente con ID: ' + customerId);
+        res.status(200).redirect(`/user/dashboard/customers/${customerId}`);
     } catch (error) {
         // IMPLEMENTARE MEGLIO LA GESTIONE DEGLI ERRORI
         console.error('Errore durante l\'assegnazione del corso:', error);

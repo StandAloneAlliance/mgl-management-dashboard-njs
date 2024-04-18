@@ -8,6 +8,7 @@ const flash = require('connect-flash');
 const update_course_scheduler = require('./app/commands/update-course-status')
 const update_expirating_course_status = require('./app/commands/update-course-status-2')
 const cron = require('node-cron')
+const mail = require('./app/mail/expiration-notification')
 const port = process.env.PORT || 3000;
 
 const app = express();
@@ -17,6 +18,7 @@ cron.schedule('* * * * *', async () => {
     console.log('Running the task scheduler daily at 00:00');
     await update_expirating_course_status.updateExpiratingCourseStatus()
     await update_course_scheduler.updateCourseStatus();
+    await mail.sendExpiringCoursesEmail()
 })
 
 

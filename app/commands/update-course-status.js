@@ -4,7 +4,7 @@ const { Sequelize } = require('sequelize')
 
 async function updateCourseStatus() {
     try {
-        const today = moment().format('YYYY-MM-DD')
+        const today = moment().format('YYYY-MM-DD HH:mm:ss')
 
         const courses = await Course.findAll({
             where: {
@@ -13,6 +13,7 @@ async function updateCourseStatus() {
                 }
             }
         });
+        console.log(courses)
         // Assicurati che il metodo findAll del modello Course restituisca tutti i corsi
 
         for (const course of courses) {

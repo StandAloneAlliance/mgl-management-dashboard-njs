@@ -9,7 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Course.belongsToMany(models.Customer, { through: 'course_customer', foreignKey: 'course_id', otherKey: 'customer_id' })
+      Course.belongsToMany(models.Customer, {
+        through: 'course_customer',
+        foreignKey: 'course_id', // Nome del campo chiave esterna nella tabella pivot che fa riferimento a Course
+        otherKey: 'customer_id', // Nome del campo chiave esterna nella tabella pivot che fa riferimento a Customer
+      });
     }
   }
   Course.init({
@@ -37,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Course',
+    tableName: 'courses',
     timestamps: false,
     underscored: true,
   });
