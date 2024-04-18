@@ -195,6 +195,9 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
 })
 
 router.get('/dashboard/customers/:customerId/edit', async (req, res) => {
+    if (!req.isAuthenticated()) {
+        return res.redirect('/login')
+    }
     try {
         const customerId = req.params.customerId;
         // Query per recuperare i dettagli del corsista usando l'ID del corsista
