@@ -34,11 +34,9 @@
                                 <div class="col-8">
                                     <div class="card my-3">
                                         <div class="card-body">
-                                            <form action="/admin/customers/update/<%= customer.id %>" method="POST"
-                                                enctype="multipart/form-data" id="createRestaurantForm"
+                                            <form action="/user/dashboard/customers/<%= customer.id %>/edit"
+                                                method="POST" id="createRestaurantForm"
                                                 class="card shadow bg-body-tertiary p-2">
-                                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                                <input type="hidden" name="_method" value="PUT">
                                                 <!-- Card Header -->
                                                 <div class="card-header bg-white py-3">
                                                     <!-- Create Title -->
@@ -56,15 +54,8 @@
                                                         <!-- Name Input Text -->
                                                         <input type="text" name="name" id="name"
                                                             placeholder="Inserisci il nome del corsista"
-                                                            class="form-control <%= errors.name ? 'is-invalid' : '' %>"
-                                                            value="<%= locals && locals.formData && locals.formData.name ? locals.formData.name : customer.name %>"
+                                                            class="form-control" value="<%= customer.name %>"
                                                             maxlength="60" required>
-                                                        <!-- Name Error Text -->
-                                                        <% if (errors && errors.name) { %>
-                                                            <div class="text-danger">
-                                                                <%= errors.name %>
-                                                            </div>
-                                                            <% } %>
                                                     </div>
                                                     <!-- Customer Surname Form Group -->
                                                     <div class="form-group my-4">
@@ -73,18 +64,79 @@
                                                         <!-- Surname Input Text -->
                                                         <input type="text" name="surname" id="surname"
                                                             placeholder="Inserisci il cognome del corsista"
-                                                            class="form-control <%= errors.surname ? 'is-invalid' : '' %>"
-                                                            value="<%= locals && locals.formData && locals.formData.surname ? locals.formData.surname : customer.surname %>"
+                                                            class="form-control" value="<%= customer.surname %>"
                                                             maxlength="60" required>
-                                                        <!-- Surname Error Text -->
-                                                        <% if (errors && errors.surname) { %>
-                                                            <div class="text-danger">
-                                                                <%= errors.surname %>
-                                                            </div>
-                                                            <% } %>
+
                                                     </div>
-                                                    <!-- Other form fields ... -->
-                                                    <!-- Create Submit Button -->
+                                                    <!-- Customer C.F. Form Group -->
+                                                    <div class="form-group my-4">
+                                                        <!-- Customer C.F. Label -->
+                                                        <label class="control-label my-2">Codice Fiscale *</label>
+                                                        <!-- Customer C.F. Input Text -->
+                                                        <input type="text" name="cfr" id="cfr"
+                                                            placeholder="Inserisci il codice fiscale del corsista"
+                                                            class="form-control" value="<%= customer.cfr %>"
+                                                            minlength="16" maxlength="16" required>
+                                                        <!-- Customer C.F. Error Text -->
+
+                                                    </div>
+                                                    <!-- Customer Email Form Group -->
+                                                    <div class="form-group my-4">
+                                                        <!-- Email Label -->
+                                                        <label class="control-label my-2">Email</label>
+                                                        <!-- Email Input Text -->
+                                                        <input type="email" name="email" id="email"
+                                                            placeholder="Inserisci l'email del corsista"
+                                                            class="form-control" value="<%= customer.email %>">
+                                                        <!-- Email Error Text -->
+
+                                                    </div>
+                                                    <!-- Customer City Of Birth Form Group -->
+                                                    <div class="form-group my-4">
+                                                        <!-- Customer City Of Birth Label -->
+                                                        <label class="control-label my-2">Città di nascita *</label>
+                                                        <!-- Customer City Of Birth Input Text -->
+                                                        <input type="text" name="city_of_birth" id="city_of_birth"
+                                                            placeholder="Inserisci il cognome del corsista"
+                                                            class="form-control" value="<%= customer.city_of_birth %>"
+                                                            maxlength="60" required>
+                                                        <!-- Customer City Of Birth Error Text -->
+
+                                                    </div>
+                                                    <!-- Customer Date Of Birth Form Group -->
+                                                    <div class="form-group my-4">
+                                                        <!-- Customer Date Of Birth Label -->
+                                                        <label class="control-label my-2">Data di nascita *</label>
+                                                        <!-- Customer Date Of Birth Input File -->
+                                                        <input type="date" name="date_of_birth" id="date_of_birth"
+                                                            class="form-control" value="<%= customer.date_of_birth %>"
+                                                            required>
+                                                        <!-- Customer Date Of Birth Error Text -->
+
+                                                    </div>
+                                                    <!-- Customer Task Form Group -->
+                                                    <div class="form-group my-4">
+                                                        <!-- Customer Task Of Birth Label -->
+                                                        <label class="control-label my-2">Mansione</label>
+                                                        <!-- Customer Task Input Text -->
+                                                        <input type="text" name="task" id="task"
+                                                            placeholder="Inserisci il cognome del corsista"
+                                                            class="form-control" value="<%= customer.task %>"
+                                                            maxlength="70">
+                                                        <!-- Customer Task Error Text -->
+
+                                                    </div>
+                                                    <!-- Customer Cover Image Form Group -->
+                                                    <div class="form-group my-4">
+                                                        <!-- Cover Image Label -->
+                                                        <label class="control-label my-2">Immagine del corsista</label>
+                                                        <!-- Cover Image Input File -->
+                                                        <input type="file" name="cover_image" id="cover_image"
+                                                            class="form-control @error('cover_image') is-invalid @enderror"
+                                                            accept="image/jpg, image/jpeg, image/png, image/webp">
+                                                        <!-- Cover Image Error Text -->
+
+                                                    </div>
                                                     <div
                                                         class="col-12 d-flex justify-content-center align-items-center my-5">
                                                         <button type="submit"

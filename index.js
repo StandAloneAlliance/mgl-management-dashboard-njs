@@ -20,16 +20,16 @@ const dashboard = require('./app/routes/dashboard')
 
 const app = express();
 // UTILIZZO COOKIE PARSER PER IL PARSING DEL TOKEN CSRF
-app.use(cookieParser())
-const csrfProtection = csrf({ cookie: true })
+// app.use(cookieParser())
+// const csrfProtection = csrf({ cookie: true })
 
 // ESCLUDO LE ROTTE DI AUTENTICAZIONE DAL TOKEN CSRF
-app.use((req, res, next) => {
-    if (req.url === '/login' || req.url === '/logout') {
-        return next();
-    }
-    csrfProtection(req, res, next);
-});
+// app.use((req, res, next) => {
+//     if (req.url === '/login' || req.url === '/logout') {
+//         return next();
+//     }
+//     csrfProtection(req, res, next);
+// });
 
 // AVVIO IL SERVER
 app.listen(port, () => {

@@ -1,6 +1,5 @@
 const express = require('express');
 const sequelize = require('../config/db-connection')
-const schedule = require('node-schedule')
 const moment = require('moment')
 const router = express.Router();
 const Customer = require('../../models/index').Customer
@@ -32,8 +31,7 @@ router.get('/dashboard/customers/create-customers', (req, res) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/login')
     }
-    const csrfToken = req.csrfToken()
-    res.render('customers/create-customers', { csrfToken: csrfToken })
+    res.render('customers/create-customers')
 })
 
 
@@ -99,7 +97,6 @@ router.get('/dashboard/customers/:id/assign-courses', async (req, res) => {
     }
 
     try {
-        const csrfToken = req.csrfToken()
         const courses = getCourses()
         // Ottieni l'id del corsista dalla richiesta
         const customerId = req.params.id;
@@ -109,7 +106,7 @@ router.get('/dashboard/customers/:id/assign-courses', async (req, res) => {
         // const customer = await Customer.findByPk(customerId);
 
         // Passa le informazioni del corsista alla vista
-        res.render('customers/assign-courses', { csrfToken: csrfToken, customerId: customerId, courses: courses });
+        res.render('customers/assign-courses', { customerId: customerId, courses: courses });
     } catch (error) {
         // Gestisci gli errori qui
         console.error(error);
@@ -198,7 +195,6 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
 
 router.get('/dashboard/customers/:customerId/edit', async (req, res) => {
     try {
-        const csrfToken = req.csrfToken()
         const customerId = req.params.customerId;
         // Query per recuperare i dettagli del corsista usando l'ID del corsista
         const customer = await Customer.findByPk(customerId);
@@ -210,11 +206,35 @@ router.get('/dashboard/customers/:customerId/edit', async (req, res) => {
         }
 
         // Passa i dettagli del corsista alla vista per l'edit del corsista
-        res.render('customers/update-customers', { csrfToken: csrfToken, customer: customer });
+        res.render('customers/update-customers', { customer: customer });
     } catch (error) {
         // Gestione degli errori in caso di errore nel recupero dei dettagli del corsista
         console.error('Error retrieving customer details:', error);
         res.status(500).send('Internal Server Error');
+    }
+})
+
+router.post('/dashboard/customers/:customerId/edit', async (req, res) => {
+    try {
+        // Estrai l'ID del corsista dalla richiesta
+        const customerId = req.params.customerId;
+
+        // Trova il corsista dal database
+        const customer = await Customer.findByPk(customerId);
+
+        // Se il corsista non esiste, restituisci un errore
+        if (!customer) {
+            return res.status(404).json({ error: 'Corsista non trovato' });
+        }
+
+        // Aggiorna i dati del corsista con i nuovi dati inviati nella richiesta
+        await customer.update(req.body);
+
+        // Reindirizza alla pagina del corsista aggiornata
+        res.redirect(`/user/dashboard/customers/${customerId}`);
+    } catch (error) {
+        console.error('Errore durante l\'aggiornamento dei dati del corsista:', error);
+        res.status(500).json({ error: 'Errore interno del server' });
     }
 })
 
