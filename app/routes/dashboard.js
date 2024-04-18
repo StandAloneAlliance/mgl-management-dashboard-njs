@@ -5,6 +5,7 @@ const router = express.Router();
 const Customer = require('../../models/index').Customer
 const Course = require('../../models/index').Course
 const getCourses = require('../config/courses_type')
+const { validateInputs, checkValidationResults } = require('../middleware/create-customers-validator')
 
 
 router.get('/dashboard', (req, res) => {
@@ -36,7 +37,7 @@ router.get('/dashboard/customers/create-customers', (req, res) => {
 
 
 // ROTTA POST PER LA CREAZIONE DEL CORSISTA 
-router.post('/dashboard/customers/create-customers', async (req, res) => {
+router.post('/dashboard/customers/create-customers', validateInputs, checkValidationResults, async (req, res) => {
     const { name, surname, cfr, email, cover_image, date_of_birth, city_of_birth, task } = req.body
     try {
 
