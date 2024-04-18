@@ -6,6 +6,7 @@ const Customer = require('../../models/index').Customer
 const Course = require('../../models/index').Course
 const getCourses = require('../config/courses_type')
 const { validateInputs, checkValidationResults } = require('../middleware/create-customers-validator')
+const { editValidateInputs, checkEditValidationResults } = require('../middleware/edit-customers-validator')
 
 
 router.get('/dashboard', (req, res) => {
@@ -32,7 +33,8 @@ router.get('/dashboard/customers/create-customers', (req, res) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/login')
     }
-    res.render('customers/create-customers')
+    console.log(res.body)
+    res.render('customers/create-customers', { formData: req.body })
 })
 
 
@@ -194,7 +196,7 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
     }
 })
 
-router.get('/dashboard/customers/:customerId/edit', async (req, res) => {
+router.get('/dashboard/customers/:customerId/edit', editValidateInputs, checkEditValidationResults, async (req, res) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/login')
     }
