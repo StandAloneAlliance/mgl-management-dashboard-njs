@@ -11,6 +11,7 @@
             <div class="card-body">
                 <form action="/user/dashboard/customers/create-customers" method="POST" id="createRestaurantForm"
                     class="card shadow bg-body-tertiary p-2">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <!-- Card Header -->
                     <div class="card-header bg-white py-3">
                         <!-- Create Title -->

@@ -32,7 +32,8 @@ router.get('/dashboard/customers/create-customers', (req, res) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/login')
     }
-    res.render('customers/create-customers')
+    const csrfToken = req.csrfToken()
+    res.render('customers/create-customers', { csrfToken: csrfToken })
 })
 
 
@@ -98,6 +99,7 @@ router.get('/dashboard/customers/:id/assign-courses', async (req, res) => {
     }
 
     try {
+        const csrfToken = req.csrfToken()
         const courses = getCourses()
         // Ottieni l'id del corsista dalla richiesta
         const customerId = req.params.id;
@@ -107,7 +109,7 @@ router.get('/dashboard/customers/:id/assign-courses', async (req, res) => {
         // const customer = await Customer.findByPk(customerId);
 
         // Passa le informazioni del corsista alla vista
-        res.render('customers/assign-courses', { customerId: customerId, courses: courses });
+        res.render('customers/assign-courses', { csrfToken: csrfToken, customerId: customerId, courses: courses });
     } catch (error) {
         // Gestisci gli errori qui
         console.error(error);
@@ -191,6 +193,28 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
         // IMPLEMENTARE MEGLIO LA GESTIONE DEGLI ERRORI
         console.error('Errore durante l\'assegnazione del corso:', error);
         res.status(500).send('Errore durante l\'assegnazione del corso');
+    }
+})
+
+router.get('/dashboard/customers/:customerId/edit', async (req, res) => {
+    try {
+        const csrfToken = req.csrfToken()
+        const customerId = req.params.customerId;
+        // Query per recuperare i dettagli del corsista usando l'ID del corsista
+        const customer = await Customer.findByPk(customerId);
+
+        // Se il corsista non è trovato nel database, reindirizza ad una pagina di errore o restituisci un errore 404
+        if (!customer) {
+            // Gestione del caso in cui il corsista non sia trovato
+            return res.status(404).send('Customer not found');
+        }
+
+        // Passa i dettagli del corsista alla vista per l'edit del corsista
+        res.render('customers/update-customers', { csrfToken: csrfToken, customer: customer });
+    } catch (error) {
+        // Gestione degli errori in caso di errore nel recupero dei dettagli del corsista
+        console.error('Error retrieving customer details:', error);
+        res.status(500).send('Internal Server Error');
     }
 })
 
