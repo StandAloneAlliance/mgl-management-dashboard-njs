@@ -33,7 +33,6 @@ router.get('/dashboard/customers/create-customers', (req, res) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/login')
     }
-    console.log(res.body)
     res.render('customers/create-customers', { formData: req.body })
 })
 
@@ -196,53 +195,47 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
     }
 })
 
-router.get('/dashboard/customers/:customerId/edit', editValidateInputs, checkEditValidationResults, async (req, res) => {
+router.get('/dashboard/customers/:customerId/edit', async (req, res) => {
     if (!req.isAuthenticated()) {
-        return res.redirect('/login')
+        return res.redirect('/login');
     }
     try {
         const customerId = req.params.customerId;
-        // Query per recuperare i dettagli del corsista usando l'ID del corsista
         const customer = await Customer.findByPk(customerId);
-
-        // Se il corsista non è trovato nel database, reindirizza ad una pagina di errore o restituisci un errore 404
         if (!customer) {
-            // Gestione del caso in cui il corsista non sia trovato
             return res.status(404).send('Customer not found');
         }
-
-        // Passa i dettagli del corsista alla vista per l'edit del corsista
-        res.render('customers/update-customers', { customer: customer });
+        console.log(customer.id)
+        res.render('customers/update-customers', { customer: customer }); // Assicurati di passare correttamente il cliente al template
     } catch (error) {
-        // Gestione degli errori in caso di errore nel recupero dei dettagli del corsista
         console.error('Error retrieving customer details:', error);
         res.status(500).send('Internal Server Error');
     }
-})
+});
 
-router.post('/dashboard/customers/:customerId/edit', async (req, res) => {
+router.put('/dashboard/customers/:id/edit', async (req, res) => {
     try {
-        // Estrai l'ID del corsista dalla richiesta
-        const customerId = req.params.customerId;
+        // Trova il cliente dal database
+        const customer = await Customer.findByPk(req.params.id);
 
-        // Trova il corsista dal database
-        const customer = await Customer.findByPk(customerId);
-
-        // Se il corsista non esiste, restituisci un errore
+        // Se il cliente non esiste, restituisci un errore
         if (!customer) {
-            return res.status(404).json({ error: 'Corsista non trovato' });
+            return res.status(404).json({ error: 'Cliente non trovato' });
         }
+        console.log(req.body)
 
-        // Aggiorna i dati del corsista con i nuovi dati inviati nella richiesta
+        // Aggiorna i dati del cliente con i nuovi dati inviati nella richiesta
         await customer.update(req.body);
 
-        // Reindirizza alla pagina del corsista aggiornata
-        res.redirect(`/user/dashboard/customers/${customerId}`);
+        // Reindirizza alla pagina del cliente aggiornata
+        res.status(200).redirect(`/user/dashboard/customers`);
     } catch (error) {
-        console.error('Errore durante l\'aggiornamento dei dati del corsista:', error);
+        console.error('Errore durante l\'aggiornamento dei dati del cliente:', error);
         res.status(500).json({ error: 'Errore interno del server' });
     }
-})
+});
+
+
 
 // ROTTA PER L'ELIMINAZIONE DEL CORISTA DA IMPLEMENTARE MEGLIO ANCHE CON L'ELIMINAZIONE DEI CORSI ASSOCIATI
 router.delete('/dashboard/customers/:id/delete', async (req, res) => {

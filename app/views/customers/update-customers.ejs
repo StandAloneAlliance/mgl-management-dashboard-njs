@@ -34,9 +34,9 @@
                                 <div class="col-8">
                                     <div class="card my-3">
                                         <div class="card-body">
-                                            <form action="/user/dashboard/customers/<%= customer.id %>/edit"
-                                                method="POST" id="createRestaurantForm"
-                                                class="card shadow bg-body-tertiary p-2">
+                                            <form action="/user/dashboard/customers/<%= customer.id %>/edit?_method=PUT"
+                                                id="createRestaurantForm" class="card shadow bg-body-tertiary p-2"
+                                                method="POST">
                                                 <!-- Card Header -->
                                                 <div class="card-header bg-white py-3">
                                                     <!-- Create Title -->

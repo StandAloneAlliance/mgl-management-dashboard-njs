@@ -9,7 +9,8 @@ const update_expirating_course_status = require('./app/commands/update-course-st
 const cron = require('node-cron')
 const mail = require('./app/mail/expiration-notification')
 const csrf = require('csurf')
-const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const port = process.env.PORT || 3000;
 
 // ROTTE
@@ -43,11 +44,14 @@ sequelize.authenticate().then(() => {
     .catch(err => {
         console.log('Errore durante la connessione', err)
     })
+// app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json());
 
 // SETTO LE VIEW E IL TIPO DI ESTENSIONE
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
-
 // SETTO I FILE STATICI DELLA CARTELLA PUBLIC
 app.use(express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
 app.use(express.static(path.join(__dirname, 'app', 'public')));
