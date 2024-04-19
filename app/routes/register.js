@@ -7,17 +7,12 @@ const router = express.Router()
 
 // CREO LA ROTTA GET PER LA REGISTRAZIONE NELLA VIEW register.ejs
 router.get('/register', (req, res) => {
-    const csrfToken = req.csrfToken()
-    res.render('register', { csrfToken: csrfToken })
+    res.render('register')
 })
 
 
 // ROTTA PER LA REGISTRAZIONE DELL'UTENTE NELLA VIEW register.ejs
 router.post('/register', async (req, res) => {
-
-    if (!req.csrfToken()) {
-        return res.status(403).send('Invalid CSRF token');
-    }
 
     // RECUPERO IL BODY DELLA REQUEST
     const { name, surname, email, password } = req.body
