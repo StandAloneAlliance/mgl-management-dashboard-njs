@@ -18,6 +18,14 @@
                     <p>CF: <%= customer.cfr %>
                     </p>
                     <!-- Aggiungi altri dettagli del cliente come desideri -->
+                    <a href="customers/<%= customer.id %>">Vai al dettaglio del corsista</a>
+                    <a href="customers/<%= customer.id %>/assign-courses">assegna corso al corsista</a>
+                    <a href="customers/<%= customer.id %>/edit">Modifica dati corsista</a>
+                    <form id="deleteForm_<%= customer.id %>"
+                        action="/user/dashboard/customers/<%= customer.id %>/delete?_method=DELETE" method="POST">
+                        <button type="submit">Cancella il
+                            corsista</button>
+                    </form>
                 </div>
                 <% }); %>
                     <a href="customers/create-customers">Crea il corsista</a>

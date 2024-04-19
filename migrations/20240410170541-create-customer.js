@@ -18,22 +18,24 @@ module.exports = {
         }
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       surname: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       cfr: {
         type: Sequelize.STRING,
-        unique: true
+        unique: true,
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: true
+
       },
       cover_image: {
         type: Sequelize.STRING,
-        allowNull: true
       },
       date_of_birth: {
         type: Sequelize.DATEONLY, // Using DATEONLY instead of DATE for d/m/Y format
@@ -45,14 +47,11 @@ module.exports = {
       },
       task: {
         type: Sequelize.STRING,
-        allowNull: true
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
       }
     });

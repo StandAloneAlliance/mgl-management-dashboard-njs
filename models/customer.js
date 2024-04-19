@@ -11,7 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Customer.belongsTo(models.User, { foreignKey: 'user_id' })
-      Customer.belongsToMany(models.Course, { through: 'course_customer', foreignKey: 'customer_id', otherKey: 'course_id' })
+      Customer.belongsToMany(models.Course, {
+        through: 'course_customer',
+        foreignKey: 'customer_id', // Nome del campo chiave esterna nella tabella pivot che fa riferimento a Customer
+        otherKey: 'course_id', // Nome del campo chiave esterna nella tabella pivot che fa riferimento a Course
+      });
     }
   }
   Customer.init({
@@ -42,6 +46,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Customer',
+    tableName: 'customers'
   });
   return Customer;
 };
