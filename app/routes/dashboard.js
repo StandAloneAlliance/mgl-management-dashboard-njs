@@ -92,6 +92,7 @@ router.get('/dashboard/customers/:id', async (req, res) => {
     }
 })
 
+
 // ROTTA GET PER L'ASSEGNAZIONE DEL CORSO AL CORSISTA CON UN DETERMINATO ID
 router.get('/dashboard/customers/:id/assign-courses', async (req, res) => {
     if (!req.isAuthenticated()) {
