@@ -234,27 +234,6 @@ router.put('/dashboard/customers/:id/edit', editValidateInputs, checkEditValidat
     }
 });
 
-
-
-// ROTTA PER L'ELIMINAZIONE DEL CORISTA DA IMPLEMENTARE MEGLIO ANCHE CON L'ELIMINAZIONE DEI CORSI ASSOCIATI
-router.delete('/dashboard/customers/:id/delete', async (req, res) => {
-    const customerId = req.params.id;
-    try {
-        // Esegui l'eliminazione del corsista con l'id specificato
-        await Customer.destroy({
-            where: {
-                id: customerId
-            }
-        });
-        // Reindirizza l'utente a una pagina appropriata dopo l'eliminazione del corsista
-        res.redirect('/user/dashboard');
-    } catch (error) {
-        // Gestisci eventuali errori
-        console.error("Errore durante l'eliminazione del corsista:", error);
-        res.status(500).send("Si è verificato un errore durante l'eliminazione del corsista.");
-    }
-});
-
 router.get('/dashboard/customers/:customerId/courses/:courseId/edit', async (req, res) => {
     if (!req.isAuthenticated) {
         res.redirect('/login')
@@ -301,5 +280,24 @@ router.put('/dashboard/customers/:customerId/courses/:courseId/edit', async (req
     }
 });
 
+
+// ROTTA PER L'ELIMINAZIONE DEL CORISTA DA IMPLEMENTARE MEGLIO ANCHE CON L'ELIMINAZIONE DEI CORSI ASSOCIATI
+router.delete('/dashboard/customers/:id/delete', async (req, res) => {
+    const customerId = req.params.id;
+    try {
+        // Esegui l'eliminazione del corsista con l'id specificato
+        await Customer.destroy({
+            where: {
+                id: customerId
+            }
+        });
+        // Reindirizza l'utente a una pagina appropriata dopo l'eliminazione del corsista
+        res.redirect('/user/dashboard');
+    } catch (error) {
+        // Gestisci eventuali errori
+        console.error("Errore durante l'eliminazione del corsista:", error);
+        res.status(500).send("Si è verificato un errore durante l'eliminazione del corsista.");
+    }
+});
 
 module.exports = router
