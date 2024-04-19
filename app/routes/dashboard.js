@@ -205,7 +205,6 @@ router.get('/dashboard/customers/:customerId/edit', async (req, res) => {
         if (!customer) {
             return res.status(404).send('Customer not found');
         }
-        console.log(customer.id)
         res.render('customers/update-customers', { customer: customer }); // Assicurati di passare correttamente il cliente al template
     } catch (error) {
         console.error('Error retrieving customer details:', error);
@@ -213,8 +212,9 @@ router.get('/dashboard/customers/:customerId/edit', async (req, res) => {
     }
 });
 
-router.put('/dashboard/customers/:id/edit', async (req, res) => {
+router.put('/dashboard/customers/:id/edit', editValidateInputs, checkEditValidationResults, async (req, res) => {
     try {
+        const customerId = req.params.id
         // Trova il cliente dal database
         const customer = await Customer.findByPk(req.params.id);
 
@@ -222,7 +222,6 @@ router.put('/dashboard/customers/:id/edit', async (req, res) => {
         if (!customer) {
             return res.status(404).json({ error: 'Cliente non trovato' });
         }
-        console.log(req.body)
 
         // Aggiorna i dati del cliente con i nuovi dati inviati nella richiesta
         await customer.update(req.body);
@@ -253,6 +252,52 @@ router.delete('/dashboard/customers/:id/delete', async (req, res) => {
         // Gestisci eventuali errori
         console.error("Errore durante l'eliminazione del corsista:", error);
         res.status(500).send("Si è verificato un errore durante l'eliminazione del corsista.");
+    }
+});
+
+router.get('/dashboard/customers/:customerId/courses/:courseId/edit', async (req, res) => {
+    if (!req.isAuthenticated) {
+        res.redirect('/login')
+    }
+    const { customerId, courseId } = req.params
+    const customer = await Customer.findByPk(customerId);
+    if (!customer) {
+        return res.status(404).json({ error: 'Corsista non trovato' });
+    }
+
+    const course = await Course.findByPk(courseId);
+    if (!course) {
+        return res.status(404).json({ error: 'Corso non trovato' });
+    }
+    res.render('courses/edit-courses', { customerId: customerId, courseId: courseId })
+})
+
+router.put('/dashboard/customers/:customerId/courses/:courseId/edit', async (req, res) => {
+    try {
+        const { customerId, courseId } = req.params;
+
+        // Trova il cliente dal database
+        const customer = await Customer.findByPk(customerId);
+        if (!customer) {
+            return res.status(404).json({ error: 'Cliente non trovato' });
+        }
+
+        // Trova il corso associato al cliente dal database
+        const course = await Course.findByPk(courseId);
+        if (!course) {
+            return res.status(404).json({ error: 'Corso non trovato' });
+        }
+
+        console.log(req.body)
+
+        // Aggiorna i dettagli del corso
+        await course.update(req.body);
+
+        // Reindirizza alla pagina del corso aggiornata
+        res.redirect(`/user/dashboard/customers/${customerId}`);
+    } catch (error) {
+        console.error('Errore durante l\'aggiornamento dei dettagli del corso:', error);
+        res.status(500).json({ error: 'Errore interno del server' });
     }
 });
 
