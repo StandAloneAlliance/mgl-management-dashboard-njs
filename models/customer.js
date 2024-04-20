@@ -20,12 +20,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   Customer.init({
     id: {
-      type: DataTypes.BIGINT.UNSIGNED,
+      type: DataTypes.BIGINT,
       primaryKey: true,
       autoIncrement: true
     },
     user_id: {
-      type: DataTypes.BIGINT.UNSIGNED,
+      type: DataTypes.BIGINT,
       allowNull: false,
       references: {
         model: 'User',
