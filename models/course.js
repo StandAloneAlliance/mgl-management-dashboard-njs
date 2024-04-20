@@ -17,11 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Course.init({
-    id: {
-      type: DataTypes.BIGINT,
-      primaryKey: true,
-      autoIncrement: true
-    },
     nome_corso: DataTypes.STRING,
     posti_disponibili: DataTypes.INTEGER,
     indirizzo_di_svolgimento: DataTypes.STRING,
