@@ -5,8 +5,8 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
-const env = process.env.APP_ENV;
-const configPath = path.resolve('C:/Users/Utente/Desktop/project/nodejs-mgl-dashboard/config/config.json')
+const env = process.env.APP_ENV || 'productions';
+const configPath = path.resolve(__dirname, '../config/config.json');
 const config = require(configPath)[env];
 const db = {};
 
