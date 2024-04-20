@@ -1,0 +1,31 @@
+{
+    "development": {
+        "username": "CloudSA01afe6ce",
+        "password": "mglazuredatabase2024!!",
+        "database": "mglmanagement-database",
+        "port": 1433,
+        "host": "mglmanagement.database.windows.net",
+        "dialect": "mssql",
+        "dialectOptions": {
+            "encrypt": true
+        }
+    },
+    "test": {
+        "username": "root",
+        "password": null,
+        "database": "database_test",
+        "host": "127.0.0.1",
+        "dialect": "mysql"
+    },
+    "production": {
+        "username": "CloudSA01afe6ce",
+        "password": "mglazuredatabase2024!!",
+        "database": "mglmanagement-database",
+        "port": 1433,
+        "host": "mglmanagement.database.windows.net",
+        "dialect": "mssql",
+        "dialectOptions": {
+            "encrypt": true
+        }
+    }
+}
