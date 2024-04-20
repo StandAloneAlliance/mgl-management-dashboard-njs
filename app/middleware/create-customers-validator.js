@@ -15,13 +15,13 @@ const validateSurname = body('surname')
 const validateCFR = body('cfr')
     .notEmpty().withMessage('Il Codice Fiscale è obbligatorio')
     .isLength({ min: 16, max: 16 }).withMessage('Il Codice Fiscale deve avere una lunghezza di 16 caratteri')
-    .custom(async (value, { req }) => {
-        // Verifica se il Codice Fiscale è unico nel database
-        const existingCustomer = await Customer.findOne({ where: { cfr: value } });
-        if (existingCustomer) {
-            throw new Error('Questa Codice Fiscale è già stato utilizzato');
-        }
-    });
+// .custom(async (value, { req }) => {
+//     // Verifica se il Codice Fiscale è unico nel database
+//     const existingCustomer = await Customer.findOne({ where: { cfr: value } });
+//     if (existingCustomer) {
+//         throw new Error('Questa Codice Fiscale è già stato utilizzato');
+//     }
+// });
 
 // Regole di validazione per il campo "email"
 const validateEmail = body('email')

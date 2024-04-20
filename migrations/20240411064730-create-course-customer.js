@@ -5,7 +5,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('course_customer', {
       course_id: {
-        type: Sequelize.BIGINT.UNSIGNED,
+        type: Sequelize.BIGINT,
         allowNull: false,
         references: {
           model: 'courses', // Nome della tabella courses come definito nel tuo DB
@@ -15,7 +15,7 @@ module.exports = {
         onDelete: 'CASCADE'
       },
       customer_id: {
-        type: Sequelize.BIGINT.UNSIGNED,
+        type: Sequelize.BIGINT,
         allowNull: false,
         references: {
           model: 'customers', // Nome della tabella customers come definito nel tuo DB

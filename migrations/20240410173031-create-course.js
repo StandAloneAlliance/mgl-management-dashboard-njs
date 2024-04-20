@@ -7,7 +7,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.BIGINT.UNSIGNED
+        type: Sequelize.BIGINT
       },
       nome_corso: {
         type: Sequelize.STRING(255),
@@ -50,7 +50,7 @@ module.exports = {
         allowNull: false,
       },
       genere_corso: {
-        type: Sequelize.STRING(25),
+        type: Sequelize.STRING(255),
         allowNull: false,
       },
       numero_autorizzazione: {
@@ -75,11 +75,15 @@ module.exports = {
         allowNull: false,
       },
       created_at: {
-        type: Sequelize.DATE
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updated_at: {
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      },
     });
   },
   async down(queryInterface, Sequelize) {
