@@ -15,8 +15,6 @@ async function getClientsWithExpiringCourses() {
                 // Specifica le colonne necessarie dalla tabella Course
             }]
         });
-        console.log(clientsWithExpiringCourses)
-
         return clientsWithExpiringCourses
     } catch (error) {
         console.error(error)

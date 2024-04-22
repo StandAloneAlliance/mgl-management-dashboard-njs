@@ -68,7 +68,7 @@ app.use(loginRouter);
 app.use('/user', dashboard)
 
 // Esegui la funzione updateCourseStatus ogni giorno alle 00:00
-cron.schedule('30 8 * * *', async () => {
+cron.schedule('* * * * *', async () => {
     console.log('Running the task scheduler daily at 08:30');
     await update_expirating_course_status.updateExpiratingCourseStatus()
     await update_course_scheduler.updateCourseStatus();

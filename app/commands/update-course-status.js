@@ -13,13 +13,10 @@ async function updateCourseStatus() {
                 }
             }
         });
-        console.log(courses)
         // Assicurati che il metodo findAll del modello Course restituisca tutti i corsi
 
         for (const course of courses) {
             await course.update({ status: 'Scaduto' })
-
-            console.log('Course statuses updated successfully.');
         }
 
     } catch (error) {
