@@ -103,6 +103,7 @@ router.get('/dashboard/customers/:id/assign-courses', async (req, res) => {
         const courses = getCourses()
         // Ottieni l'id del corsista dalla richiesta
         const customerId = req.params.id;
+        console.log(customerId)
 
         // Qui puoi ottenere le informazioni del corsista dal database
         // Ad esempio, usando un modello Sequelize o Mongoose
@@ -134,7 +135,8 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
 
     try {
         // Ottieni l'ID del corsista dalla richiesta
-        const customerId = req.params.customerId;
+        const customerId = req.params.id;
+        console.log(customerId)
 
         // Ottieni i dati del corso dal corpo della richiesta
         const {
@@ -188,7 +190,7 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
         await sequelize.query(assignCourseQuery);
 
         // EFFETTUARE IL REDIRECT ANZICHè IL SEND 
-        res.status(200).redirect(`/user/dashboard/customers/${customerId}`);
+        res.redirect(`/user/dashboard/customers/${customerId}`);
     } catch (error) {
         // IMPLEMENTARE MEGLIO LA GESTIONE DEGLI ERRORI
         console.error('Errore durante l\'assegnazione del corso:', error);
