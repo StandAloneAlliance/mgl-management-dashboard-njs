@@ -74,6 +74,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      email_sent: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false // Imposta su false di default
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

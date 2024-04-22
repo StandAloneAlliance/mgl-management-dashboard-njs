@@ -1,9 +1,8 @@
 const express = require('express');
-const sequelize = require('../config/db-connection')
 const moment = require('moment')
 const router = express.Router();
 const Customer = require('../../models/index').Customer
-const Course = require('../../models/index').Course
+const { Course, sequelize } = require('../../models/index')
 const getCourses = require('../config/courses_type')
 const { validateInputs, checkValidationResults } = require('../middleware/create-customers-validator')
 const { editValidateInputs, checkEditValidationResults } = require('../middleware/edit-customers-validator')

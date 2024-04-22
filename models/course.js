@@ -36,6 +36,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     data_scadenza: DataTypes.DATE,
     validità: DataTypes.INTEGER,
+    email_sent: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false // Imposta su false di default
+    },
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
   }, {
