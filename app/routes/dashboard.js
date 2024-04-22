@@ -120,23 +120,9 @@ router.get('/dashboard/customers/:id/assign-courses', async (req, res) => {
 
 // ROTTA POST PER L'ASSEGNAZIONE DEL CORSO AL CORSISTA CON UN DETERMINATO ID
 router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) => {
-
-    // FUNZIONE CHE CALCOLA LA DATA DI SCADENZA DIRETTAMENTE CLACLOANDO DATA FINE CORSO CON LA VALIDITà
-    function calculateExpiryDate(endDate, validityYears) {
-        // Parsa la data di fine corso con moment.js
-        const endDateMoment = moment(endDate);
-
-        // Aggiungi il numero di anni di validità alla data di fine corso
-        const expiryDateMoment = endDateMoment.add(validityYears, 'years');
-
-        // Restituisci la data di scadenza
-        return expiryDateMoment.format('YYYY-MM-DD');
-    }
-
     try {
         // Ottieni l'ID del corsista dalla richiesta
-        const customerId = req.params.id;
-        console.log(customerId)
+        const customerId = req.params.customerId;
 
         // Ottieni i dati del corso dal corpo della richiesta
         const {
@@ -157,6 +143,18 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
             data_scadenza,
             validità
         } = req.body;
+
+        // FUNZIONE CHE CALCOLA LA DATA DI SCADENZA DIRETTAMENTE CLACLOANDO DATA FINE CORSO CON LA VALIDITà
+        function calculateExpiryDate(endDate, validityYears) {
+            // Parsa la data di fine corso con moment.js
+            const endDateMoment = moment(endDate);
+
+            // Aggiungi il numero di anni di validità alla data di fine corso
+            const expiryDateMoment = endDateMoment.add(validityYears, 'years');
+
+            // Restituisci la data di scadenza
+            return expiryDateMoment.format('YYYY-MM-DD');
+        }
 
         const expiry_date = calculateExpiryDate(fine_svolgimento, validità)
 
@@ -183,18 +181,15 @@ router.post('/dashboard/customers/:customerId/assign-courses', async (req, res) 
         // Ottieni l'ID del corso appena creato
         const courseId = newCourse.id;
 
-        // Inserisci i dati nella tabella ponte course_customer
-        const assignCourseQuery = `INSERT INTO course_customer (course_id, customer_id) VALUES (${courseId}, ${customerId})`;
-
         // ESEGUO LA QUERY CHE HO SCRITTO SOPRA
-        await sequelize.query(assignCourseQuery);
-
-        // EFFETTUARE IL REDIRECT ANZICHè IL SEND 
+        await sequelize.query(`INSERT INTO course_customer (course_id, customer_id) VALUES (?, ?)`, {
+            replacements: [courseId, customerId]
+        });
         res.redirect(`/user/dashboard/customers/${customerId}`);
     } catch (error) {
         // IMPLEMENTARE MEGLIO LA GESTIONE DEGLI ERRORI
         console.error('Errore durante l\'assegnazione del corso:', error);
-        res.status(500).send('Errore durante l\'assegnazione del corso');
+        res.status(500).redirect('/user/dashboard/customers')
     }
 })
 
@@ -206,7 +201,7 @@ router.get('/dashboard/customers/:customerId/edit', async (req, res) => {
         const customerId = req.params.customerId;
         const customer = await Customer.findByPk(customerId);
         if (!customer) {
-            return res.status(404).send('Customer not found');
+            return res.status(404).redirect(`user/dashboard/customers/${customerId}`);
         }
         res.render('customers/update-customers', { customer: customer }); // Assicurati di passare correttamente il cliente al template
     } catch (error) {
@@ -217,13 +212,12 @@ router.get('/dashboard/customers/:customerId/edit', async (req, res) => {
 
 router.put('/dashboard/customers/:id/edit', editValidateInputs, checkEditValidationResults, async (req, res) => {
     try {
-        const customerId = req.params.id
         // Trova il cliente dal database
         const customer = await Customer.findByPk(req.params.id);
 
         // Se il cliente non esiste, restituisci un errore
         if (!customer) {
-            return res.status(404).json({ error: 'Cliente non trovato' });
+            return res.status(404).redirect(`user/dashboard/customers/${req.params.id}`);
         }
 
         // Aggiorna i dati del cliente con i nuovi dati inviati nella richiesta
