@@ -1,2 +1,23 @@
+name: Start Azure Web App
+
 on:
   schedule:
+    # Set to run at 8:30 AM (UTC) from Monday to Friday
+    - cron:  '30 8 * * 1-5'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Start Azure Web App
+      run: |
+        az webapp start --name 'mglmanagement' --resource-group 'mgl-consulting-resource-group'
