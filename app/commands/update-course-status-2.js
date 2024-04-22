@@ -17,7 +17,6 @@ async function updateExpiratingCourseStatus() {
 
         for (const course of courses) {
             await course.update({ status: 'In Scadenza' });
-            console.log(`Aggiornato lo stato del corso ${course.id} a In Scadenza`);
         }
     } catch (error) {
         console.error('Error updating course statuses:', error);

@@ -1,3 +1,4 @@
+const { Course } = require('../../models/index')
 const nodemailer = require('nodemailer');
 const expiry_courses = require('../config/get-expiry-courses')
 require('dotenv').config()
@@ -11,11 +12,11 @@ async function sendExpiringCoursesEmail() {
         const clientsWithExpiringCourses = await expiry_courses.getClientsWithExpiringCourses()
 
         const transporter = nodemailer.createTransport({
-            host: "sandbox.smtp.mailtrap.io",
-            port: 2525,
+            host: process.env.MAIL_HOST,
+            port: process.env.MAIL_PORT,
             auth: {
-                user: "25b9f3cbb44f43",
-                pass: "f96f309faeb797"
+                user: process.env.MAIL_USERNAME,
+                pass: process.env.MAIL_PASSWORD
             }
         });
 
@@ -40,9 +41,14 @@ async function sendExpiringCoursesEmail() {
                 html: emailBody
             };
 
-            // Invia l'email
-            await transporter.sendMail(mailOptions);
-            console.log(`Email inviata a ${receiverEmail}`);
+            const courseId = parseInt(customer.Courses.map(course => course.id));
+            const course = await Course.findByPk(courseId)
+            if (course.email_sent === false) {
+                // Invia l'email
+                await transporter.sendMail(mailOptions);
+                console.log(`Email inviata a ${receiverEmail}`);
+                await course.update({ email_sent: true })
+            }
         }
     } catch (error) {
         console.error('Errore durante l\'invio dell\'email:', error);
