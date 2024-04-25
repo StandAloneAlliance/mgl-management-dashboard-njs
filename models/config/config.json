@@ -2,7 +2,7 @@
     "development": {
         "username": "CloudSA01afe6ce",
         "password": "mglazuredatabase2024!!",
-        "database": "mglmanagement-database",
+        "database": "mglmanagement-db",
         "port": 1433,
         "host": "mglmanagement.database.windows.net",
         "dialect": "mssql",
@@ -20,7 +20,7 @@
     "production": {
         "username": "CloudSA01afe6ce",
         "password": "mglazuredatabase2024!!",
-        "database": "mglmanagement-database",
+        "database": "mglmanagement-db",
         "port": 1433,
         "host": "mglmanagement.database.windows.net",
         "dialect": "mssql",

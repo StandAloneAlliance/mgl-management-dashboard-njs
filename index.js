@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const session = require('express-session');
 const path = require('path')
@@ -11,7 +12,7 @@ const mail = require('./app/mail/expiration-notification')
 const csrf = require('csurf')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 // ROTTE
 const loginRouter = require('./app/routes/login');

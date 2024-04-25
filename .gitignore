@@ -1,4 +1,4 @@
 node_modules/
 package-lock/
 .env
-config/config.json
+models/config/config.json
