@@ -2,20 +2,38 @@
 <html lang="en">
 
 <head>
-    <% - include('./partials/head') %>
+    <%- include('./partials/head') %>
 </head>
 
-<body>
+<body class="garamond bg-login" >
+    
     <%= message %>
-        <form action="/login" method="POST">
-            <label for="email">Email</label>
-            <input type="email" name="email"><br><br>
+        <div class="container-fluid mt-5 ">
+            <h2 class="text-center text-light">Effettua il login</h2>
+            <div class="row ">
+                <div class="col-12  d-flex justify-content-center ">
+                    <div class="card-register  p-5">
+                        <div class="text-center text-light pb-5">
+                            <i class="fa-solid fa-user font"></i>
+                        </div>
+                        
+                        <form class="text-light" action="/login" method="POST">
+                            <label for="email">Email</label><br>
+                            <input class="color-input" placeholder="inserisci la tua mail" type="email" name="email"><br><br>
 
-            <label for="password">Password</label>
-            <input type="password" name="password"><br><br>
-
-            <input type="submit" value="Login">
-        </form>
+                            <label for="password">Password</label><br>
+                            <input placeholder="inserisci la password" class="color-input" type="password" name="password"><br><br>
+                            <div class="text-center pt-3">
+                                <input class="btn text-light btn-info" type="submit" value="Login">
+                            </div>
+                            
+                        </form>
+                    </div>
+                    
+                </div>    
+            </div>
+        </div>
+        
 </body>
 
 </html>

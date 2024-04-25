@@ -8,13 +8,57 @@ h1 {
     color: green;
 }
 /* font-family */
-.playfair {
-    font-family: "Playfair Display", serif;
+.garamond {
+    font-family: "EB Garamond", serif;
     font-optical-sizing: auto;
     font-weight: weight;
     font-style: normal;
 }
+  
 .no{
     text-decoration: none;
 }
+.font{
+    font-size: 90px;
+}
+.jumbotron{
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(251,223,120,1) 0%, rgba(255,202,6,0.9809173669467787) 35%, rgb(39, 71, 188) 100%);
+    width: 100%;
+}
+.h{
+    border: 5px solid rgb(135, 222, 139);
+    height:310px;
+
+}
+.radius-50{
+    border-radius: 50%;
+    
+}
+/* colors */
+.beautiful-blue{
+    border-radius: 10px;
+    background-color: #106FB5;
+    border: 0;
+    
+}
+.color-input{
+    border: 0;
+    border-bottom: 2px solid gray;
+    background-color: rgba(0, 0, 0, 0);
+    min-width: 260px;
+}
+.bg-login{
+    background: rgb(63,94,251);
+    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 83%);
+}
+/* style card  register and login page*/
+
+.card-register{
+    background: rgb(120,251,227);
+    background: linear-gradient(180deg, rgba(120,251,227,1) 0%, rgba(1,177,255,0.9809173669467787) 51%, rgba(5,102,255,1) 100%);
+    border-radius: 30px;
+    
+}
+
   
