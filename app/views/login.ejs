@@ -8,13 +8,13 @@
 <body class="garamond bg-login" >
     
     <%= message %>
-        <div class="container-fluid mt-5 ">
-            <h2 class="text-center text-light">Effettua il login</h2>
+        <div class="container-fluid mt-5 pb-5 ">
+            <h2 class="text-center mb-4 ">Accedi</h2>
             <div class="row ">
                 <div class="col-12  d-flex justify-content-center ">
                     <div class="card-register  p-5">
-                        <div class="text-center text-light pb-5">
-                            <i class="fa-solid fa-user font"></i>
+                        <div class="text-center text-light pb-4">
+                            <i class="fa-solid fa-user font-user"></i>
                         </div>
                         
                         <form class="text-light" action="/login" method="POST">
@@ -30,7 +30,9 @@
                         </form>
                     </div>
                     
-                </div>    
+                </div> 
+                <p class="text-center mt-4">Per ritornare alla home clicca qui</p>  
+                <a href="/" class="text-center"><i class="fa-solid fa-right-from-bracket text-center font-exit text-danger"></i></a>    
             </div>
         </div>
         

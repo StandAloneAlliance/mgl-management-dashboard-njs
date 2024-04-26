@@ -18,9 +18,17 @@ h1 {
 .no{
     text-decoration: none;
 }
+/* font */
 .font{
+    font-size: 60px;
+}
+.font-user{
     font-size: 90px;
 }
+.font-exit{
+    font-size: 50px;
+}
+/* //////// */
 .jumbotron{
     background: rgb(255,255,255);
     background: linear-gradient(90deg, rgba(251,223,120,1) 0%, rgba(255,202,6,0.9809173669467787) 35%, rgb(39, 71, 188) 100%);
@@ -47,10 +55,11 @@ h1 {
     border-bottom: 2px solid gray;
     background-color: rgba(0, 0, 0, 0);
     min-width: 260px;
+    
 }
 .bg-login{
-    background: rgb(63,94,251);
-    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 83%);
+    
+    background: linear-gradient(90deg, rgb(241, 244, 255) 10%, rgb(120, 224, 224) 83%);
 }
 /* style card  register and login page*/
 
