@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('../config/passport-config');
-const passports = require('passport')
 
 router.get('/login', (req, res) => {
     if (req.isAuthenticated()) return res.redirect('/user/dashboard');

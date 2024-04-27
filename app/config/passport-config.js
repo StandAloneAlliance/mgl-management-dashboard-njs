@@ -1,7 +1,7 @@
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const LocalStrategy = require('passport-local').Strategy
-const User = require('../../models/index').User
+const { User } = require('../../models/index')
 
 passport.use('local-login', new LocalStrategy({
     usernameField: 'email', // campo email nel body della richiesta
