@@ -63,6 +63,46 @@ h1 {
     
     background: linear-gradient(90deg, rgb(241, 244, 255) 10%, rgb(120, 224, 224) 83%);
 }
+/* dashboard page */
+
+
+.button {
+    position: relative;
+    background-color: #ffffff3a;
+    border-radius: 20px;
+    font-size: 28px;
+    color: #FFFFFF;
+    padding: 20px;
+    
+    
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .button:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+  
+  .button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
+
+
+/*  */
 /* style card  register and login page*/
 
 .card-register{
@@ -104,11 +144,16 @@ h1 {
     
     box-shadow: 5px 5px 5px 5px #928c8c88;
 }
-
+.color-blue{
+    color: #0F6FB1;
+}
+.color-yellow{
+    color: #FCD80E;
+}
 /* style for update customers page */
 
 .bg-update{
-    background: linear-gradient(90deg, rgba(243, 244, 235, 0.808) 10%, #f9d73fdc 83%);
+    background: linear-gradient(90deg, rgba(243, 244, 235, 0.808) 10%, #f9d43286 83%);
 }
 
 
