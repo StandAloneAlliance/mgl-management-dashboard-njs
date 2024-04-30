@@ -99,6 +99,17 @@ h1 {
     padding-right: 10px;
 }
 
+#example1 {
+    border: 1px solid rgba(186, 179, 179, 0.731);
+    
+    box-shadow: 5px 5px 5px 5px #928c8c88;
+}
+
+/* style for update customers page */
+
+.bg-update{
+    background: linear-gradient(90deg, rgba(243, 244, 235, 0.808) 10%, #f9d73fdc 83%);
+}
 
 
 

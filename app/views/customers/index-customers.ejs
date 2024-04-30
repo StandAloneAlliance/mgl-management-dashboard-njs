@@ -7,76 +7,7 @@
 
 <body  class="garamond">
     <main>
-        <!-- <div class="container-fluid">
-            <h1>Benvenuto nella pagina dei corsisti</h1>
-            <% customers.forEach(customer=> { %>
-                <div class="customer">
-                    <p>Nome: <%= customer.name %>
-                    </p>
-                    <p>Cognome: <%= customer.surname %>
-                    </p>
-                    <p>CF: <%= customer.cfr %>
-                    </p>
-                    <!-- Aggiungi altri dettagli del cliente come desideri -->
-                    <!-- <a href="customers/<%= customer.id %>">Vai al dettaglio del corsista</a>
-                    <a href="customers/<%= customer.id %>/assign-courses">assegna corso al corsista</a>
-                    <a href="customers/<%= customer.id %>/edit">Modifica dati corsista</a>
-                    <form id="deleteForm_<%= customer.id %>"
-                        action="/user/dashboard/customers/<%= customer.id %>/delete?_method=DELETE" method="POST">
-                        <button type="submit">Cancella il
-                            corsista</button>
-                    </form>
-                </div>
-                <% }); %>
-                    <a href="customers/create-customers">Crea il corsista</a> -->
-        <!-- </div> --> 
-        <div class="container-fluid py-3 d-none">
-            <h3 class="text-center mb-4">BENVENUTO, IN QUESTA PAGINA POTRAI GESTIRE TUTTI I CORSISTI</h3>
-            <div class="row justify-content-center ">
-                
-                    <% customers.forEach(customer=> { %>
-                        <div class="card-coursest col-10 col-xl-3 m-3 p-5">
-                            <div class="text-center text-light pb-4">
-                                <i class="fa-solid fa-user font-user"></i>
-                            </div>
-                            <p>Nome: <%= customer.name %>
-                            </p>
-                            <p>Cognome: <%= customer.surname %>
-                            </p>
-                            <p>CF: <%= customer.cfr %>
-                            </p>
-                            <div class="text-center">
-                                <p>Aggiungi altri dettagli del cliente come desideri</p>
-                                
-                                <button class="btn m-2 btn-success"><a class="no text-light" href="customers/<%= customer.id %>">dettagli</a></button>
-
-                                <button class="btn m-2 btn-info"><a class="no text-light" href="customers/<%= customer.id %>/assign-courses">assegna</a></button>
-
-                                <button class="btn m-2 btn-primary"><a class="no text-light" href="customers/<%= customer.id %>/edit"></a>modifica</button>
-                                <!-- <a href="customers/<%= customer.id %>/assign-courses">assegna corso al corsista</a>
-                                <a href="customers/<%= customer.id %>/edit">Modifica dati corsista</a> -->
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <form id="deleteForm_<%= customer.id %>"
-                                action="/user/dashboard/customers/<%= customer.id %>/delete?_method=DELETE" method="POST">
-                                <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash text-light"></i> </button>
-                                </form>
-                            </div>
-                            
-                        </div>
-                        <% }); %>
-                
-                <div class="d-flex justify-content-center mt-4">
-                    <button class="btn btn-info"><a class="text-center no text-light" href="customers/create-customers">Crea il corsista</a></button>
-                </div>
-                
-            </div>
-            
-        </div>
-
-
-
-
+       
 
         <!-- TABLE -->
        
@@ -88,22 +19,26 @@
                     </div>
                     <ul class="style-list-n text-center ps-0">
                         <li class="pt-3 over ">
-                            <div class="d-flex  align-items-center">
-                                <i class="fa-solid fa-house-user ps-3 text-info icon-ridimension"></i>
-                                <h4 class="pt-2">Home</h4>
-                            </div>
+                            <a href="/" class="no text-dark">
+                                <div class="d-flex  align-items-center">
+
+                                    <i class="fa-solid fa-house-user ps-4 text-info icon-ridimension"></i>
+                                    <h4 class="pt-2">Home</h4>
+                                </div>
+                            </a>
+                            
                             
                         </li>
                         <li  class=" over py-3">
                             <div class="d-flex  align-items-center">
-                                <i class="fa-solid text-dark icon-ridimension ps-3  fa-user-graduate"></i>
+                                <i class="fa-solid text-dark icon-ridimension ps-4  fa-user-graduate"></i>
                                 <h4  class="pt-2">Corsisti</h4>
                             </div>
                             
                         </li>
                         <li  class="over ">
                             <div class="d-flex  align-items-center">
-                                <i class="fa-solid fa-chart-simple ps-3 icon-ridimension text-success"></i>
+                                <i class="fa-solid fa-chart-simple ps-4 icon-ridimension text-success"></i>
                                 <h4  class="pt-2">Statistiche</h4>
                             </div>
                             
@@ -112,11 +47,11 @@
                     </ul>
                 </div>
                 <div class="col-10 bg-table px-0">
-                    <h2 class="text-center  bg-white  py-3">Benvenuto</h2>
-                    <div class=" m-5 p-4 rounded bg-white">
+                    <h2 class="text-center  bg-white  py-4">Benvenuto nella <span class="text-primary"> MGL </span> <span class="text-warning">consulting </span>dashboard</h2>
+                    <div id="example1" class=" m-5 p-4 rounded bg-white">
                         
                     
-                        <table class="table text-center ">
+                        <table  class="table text-center ">
                             <thead>
                             <tr>
                                 <th scope="col">foto</th>
