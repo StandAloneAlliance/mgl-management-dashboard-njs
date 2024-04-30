@@ -39,6 +39,8 @@ h1 {
     height:310px;
 
 }
+
+
 .radius-50{
     border-radius: 50%;
     
@@ -68,6 +70,53 @@ h1 {
     background: linear-gradient(180deg, rgba(120,251,227,1) 0%, rgba(1,177,255,0.9809173669467787) 51%, rgba(5,102,255,1) 100%);
     border-radius: 30px;
     
+}
+/* style card for index.customers  */
+
+.card-coursest{
+    border: 5px solid black;
+    background-color: rgba(154, 175, 175, 0.733);
+    /* background: linear-gradient(180deg, rgba(120,251,227,1) 0%, rgba(1,177,255,0.9809173669467787) 51%, rgba(5,102,255,1) 100%); */
+    border-radius: 30px;
+}
+
+.bg-table{
+    background-color: rgba(160, 245, 251, 0.769);
+    background: linear-gradient(90deg, rgb(219, 246, 250) 10%, rgba(120, 224, 224, 0.653) 83%);
+}
+.bg-white{
+    background-color: rgb(255, 255, 255);
+}
+.drop{
+    border-bottom: rgb(255, 255, 255) solid 1px;
+}
+.style-list-n{
+    list-style-type: none;
+
+}
+.icon-ridimension{
+    font-size: 30px;
+    padding-right: 10px;
+}
+
+#example1 {
+    border: 1px solid rgba(186, 179, 179, 0.731);
+    
+    box-shadow: 5px 5px 5px 5px #928c8c88;
+}
+
+/* style for update customers page */
+
+.bg-update{
+    background: linear-gradient(90deg, rgba(243, 244, 235, 0.808) 10%, #f9d73fdc 83%);
+}
+
+
+
+/* */
+.over :hover{
+    background-color: gray;
+    cursor: pointer;
 }
 
   

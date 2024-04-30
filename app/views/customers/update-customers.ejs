@@ -5,9 +5,14 @@
     <%- include('../partials/head') %>
 </head>
 
-<body>
+<body class="bg-update garamond">
     <main>
-        <div class="container">
+        <div class="container  pb-5">
+            <div class="d-flex pt-4 justify-content-center align-items-center">
+                <i class=" pe-3 fa-solid fa-shake text-secondary font-user  fa-wrench"></i>
+                <h2 class="text-center"><span class="text-secondary"> In questa pagina potrai modificare tutti i dati del corsista inseriti in precedenza</span></h2>
+            </div>
+            
             <div class="row d-flex justify-content-center">
                 <% if (typeof locals !=='undefined' && locals.error) { %>
                     <!-- Operation not Authorized Message -->
