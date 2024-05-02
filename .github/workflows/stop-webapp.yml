@@ -1,4 +1,4 @@
-name: Start Azure Web App
+name: Stop Azure Web App
 
 on:
   schedule:
