@@ -1,6 +1,7 @@
 name: Start Azure Web App
 
 on:
+  workflow_dispatch:
   schedule:
     # Set to run at 8:30 AM in italy from Monday to Friday
     - cron:  '30 6 * * 1-5'
