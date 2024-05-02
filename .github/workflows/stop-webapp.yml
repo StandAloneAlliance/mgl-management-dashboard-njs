@@ -1,8 +1,9 @@
 name: Stop Azure Web App
 
 on:
+  workflow_dispatch:
   schedule:
-    # Set to run at 8:30 AM (UTC) from Monday to Friday
+    # Set to run at 8:30 PM in italy from Monday to Friday
     - cron:  '30 18 * * 1-5'
 
 jobs:
