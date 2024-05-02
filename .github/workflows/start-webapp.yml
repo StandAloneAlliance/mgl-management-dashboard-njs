@@ -2,8 +2,8 @@ name: Start Azure Web App
 
 on:
   schedule:
-    # Set to run at 8:30 AM (UTC) from Monday to Friday
-    - cron:  '30 8 * * 1-5'
+    # Set to run at 8:30 AM in italy from Monday to Friday
+    - cron:  '30 6 * * 1-5'
 
 jobs:
   deploy:
