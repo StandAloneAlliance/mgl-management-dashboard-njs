@@ -62,6 +62,7 @@ h1 {
 .bg-login{
     
     background: linear-gradient(90deg, rgb(241, 244, 255) 10%, rgb(120, 224, 224) 83%);
+    
 }
 /* dashboard page */
 
@@ -109,8 +110,11 @@ h1 {
     background: rgb(120,251,227);
     background: linear-gradient(180deg, rgba(120,251,227,1) 0%, rgba(1,177,255,0.9809173669467787) 51%, rgba(5,102,255,1) 100%);
     border-radius: 30px;
+    box-shadow: 10px 10px 15px 5px #2b2c2c88;
     
 }
+
+
 /* style card for index.customers  */
 
 .card-coursest{
@@ -156,12 +160,27 @@ h1 {
     background: linear-gradient(90deg, rgba(243, 244, 235, 0.808) 10%, #f9d43286 83%);
 }
 
+/* style for details page */
 
+.bg-card-details{
+    background-image: url('https://i.pinimg.com/originals/6c/e3/c4/6ce3c4662230452b2daec76cabd99a2b.jpg');
+    border: 5px solid rgb(245, 244, 244);
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 5px 5px 5px 5px #635f5f90
+}
+.bg-lightgray{
+    background: linear-gradient(90deg, rgba(238,238,235,1) 50%, rgba(175,175,175,1) 100%);
+}
+/*  */
 
-/* */
+/* effetti di hover */
 .over :hover{
     background-color: gray;
     cursor: pointer;
 }
+
+/*  */
 
   
