@@ -22,7 +22,134 @@
                                     <h1 class="text-center">Modifica il corso</h1>
                                 </div>
                                 <!-- Card Body -->
+                                <!-- Card Body -->
                                 <div class="card-body">
+                                    <!-- Customer Name Form Group -->
+                                    <div class="form-group my-4 d-flex flex-column">
+                                        <!-- Name Label -->
+                                        <label class="control-label my-2">Seleziona il corso *</label>
+                                        <!-- Name Input Text -->
+                                        <select class="form-select form-select-lg" name="nome_corso" id="select-corso"
+                                            required>
+                                            <% courses.forEach(function(course) { %>
+                                                <option value="<%= course %>">
+                                                    <%= course %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                        <!-- Name Error Text -->
+                                    </div>
+                                    <!-- Indirizzo di svolgimento -->
+                                    <div class="form-group my-4">
+                                        <label class="control-label my-2">Indirizzo di svolgimento *</label>
+                                        <input type="text" name="indirizzo_di_svolgimento" id="indirizzo_di_svolgimento"
+                                            placeholder="Inserisci l'indirizzo di svolgimento del corso"
+                                            class="form-control" value="<%= course.indirizzo_di_svolgimento %>" required
+                                            maxlength="40">
+                                    </div>
+                                    <!-- Città di svolgimento -->
+                                    <div class="form-group my-4">
+                                        <label class="control-label my-2">Città di svolgimento *</label>
+                                        <input type="text" name="città_di_svolgimento" id="città_di_svolgimento"
+                                            placeholder="Inserisci la città di svolgimento del corso"
+                                            class="form-control" value="<%= course.città_di_svolgimento %>" required
+                                            maxlength="25">
+                                    </div>
+                                    <!-- CAP -->
+                                    <div class="form-group my-4">
+                                        <label class="control-label my-2">CAP *</label>
+                                        <input type="text" name="cap_sede_corso" id="cap_sede_corso"
+                                            placeholder="Inserisci il CAP della sede del corso" class="form-control"
+                                            value="<%= course.cap_sede_corso %>" required pattern="[0-9]+"
+                                            maxlength="5">
+                                    </div>
+                                    <!-- Provincia -->
+                                    <div class="form-group my-4">
+                                        <label class="control-label my-2">Provincia *</label>
+                                        <input type="text" name="provincia" id="provincia" class="form-control"
+                                            value="<%= course.provincia %>"
+                                            placeholder="Inserisci la provincia della sede del corso" required
+                                            maxlength="2">
+                                    </div>
+                                    <!-- Direttore corso -->
+                                    <div class="form-group my-4">
+                                        <label class="control-label my-2">Direttore corso *</label>
+                                        <input type="text" name="direttore_corso" id="direttore_corso"
+                                            placeholder="Inserisci il direttore del corso" class="form-control"
+                                            value="<%= course.direttore_corso %>" required maxlength="35">
+                                    </div>
+                                    <!-- Docente corso -->
+                                    <div class="form-group my-4">
+                                        <label class="control-label my-2">Docente corso *</label>
+                                        <input type="text" name="docenti_corso" id="docenti_corso"
+                                            placeholder="Inserisci il docente" class="form-control"
+                                            value="<%= course.docenti_corso %>" required maxlength="35">
+                                    </div>
+                                    <div class="form-group my-4">
+                                        <label class="control-label my-2">Inizio corso *</label>
+                                        <input type="date" name="inizio_di_svolgimento" id="inizio_di_svolgimento"
+                                            class="form-control" value="<%= course.inizio_di_svolgimento %>" required>
+                                    </div>
+                                    <!-- Fine corso -->
+                                    <div class="form-group my-4">
+                                        <label class="control-label my-2">Fine corso *</label>
+                                        <input type="date" name="fine_svolgimento" id="fine_svolgimento"
+                                            value="<%= course.fine_svolgimento %>" class="form-control" required>
+                                    </div>
+                                    <!-- Genere corso -->
+                                    <div class="form-group my-4">
+                                        <label class="control-label my-2">Categoria corso *</label>
+                                        <select class="form-select" name="genere_corso" id="genere_corso" required>
+                                            <option value="" selected>Seleziona una categoria</option>
+                                            <option value="Aggiornamento">Aggiornamento</option>
+                                            <option value="Coordinatore">Coordinatore</option>
+                                            <option value="Crediti Formativi Professionali">Crediti Formativi
+                                                Professionali
+                                            </option>
+                                            <option value="D.Lgs. 81/08">D.Lgs. 81/08</option>
+                                            <option value="HACCP">HACCP</option>
+                                            <option value="Master">Master</option>
+                                            <option value="Privacy">Privacy</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group my-4">
+                                        <!-- Customer Task Of Birth Label -->
+                                        <label class="control-label my-2">Numero Autorizzazione *</label>
+                                        <!-- Customer Task Input Text -->
+                                        <input type="text" name="numero_autorizzazione" id="numero_autorizzazione"
+                                            placeholder="Inserisci il numero di autorizzazione del corso"
+                                            class="form-control" value="<%= course.numero_autorizzazione %>" required>
+                                        <!-- Customer Task Error Text -->
+                                    </div>
+                                    <!-- Customer Surname Form Group -->
+                                    <div class="form-group my-4">
+                                        <!-- Surname Label -->
+                                        <label class="control-label my-2">Posti disponibili *</label>
+                                        <!-- Surname Input Text -->
+                                        <input type="number" name="posti_disponibili" id="posti_disponibili"
+                                            placeholder="Inserisci i posti disponibili" class="form-control"
+                                            value="<%= course.posti_disponibili %>">
+                                        <!-- Surname Error Text -->
+                                    </div>
+                                    <div class="form-group my-4">
+                                        <!-- Customer Task Of Birth Label -->
+                                        <label class="control-label my-2">Durata corso *</label>
+                                        <!-- Customer Task Input Text -->
+                                        <input type="number" name="durata_corso" id="durata_corso"
+                                            placeholder="Inserisci la durata del corso" class="form-control"
+                                            value="<%= course.durata_corso %>" required>
+                                        <!-- Customer Task Error Text -->
+                                    </div>
+                                    <div class="form-group my-4">
+                                        <!-- Surname Label -->
+                                        <label class="control-label my-2">Modifica la durata di validità del corso
+                                            *</label>
+                                        <!-- Surname Input Text -->
+                                        <input type="number" name="validità" id="validità"
+                                            placeholder="Inserisci la validità" class="form-control"
+                                            value="<%= course.validità %>" required>
+                                        <!-- Surname Error Text -->
+                                    </div>
                                     <div class="form-group my-4 d-flex flex-column">
                                         <!-- Name Label -->
                                         <label class="control-label my-2">Modifica la validità del corso *</label>

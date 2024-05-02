@@ -234,17 +234,23 @@ router.get('/dashboard/customers/:customerId/courses/:courseId/edit', async (req
     if (!req.isAuthenticated) {
         res.redirect('/login')
     }
-    const { customerId, courseId } = req.params
-    const customer = await Customer.findByPk(customerId);
-    if (!customer) {
-        return res.status(404).json({ error: 'Corsista non trovato' });
-    }
+    try {
+        const { customerId, courseId } = req.params
+        const courses = getCourses()
+        const customer = await Customer.findByPk(customerId);
+        if (!customer) {
+            return res.status(404).json({ error: 'Corsista non trovato' });
+        }
 
-    const course = await Course.findByPk(courseId);
-    if (!course) {
-        return res.status(404).json({ error: 'Corso non trovato' });
+        const course = await Course.findByPk(courseId);
+        if (!course) {
+            return res.status(404).json({ error: 'Corso non trovato' });
+        }
+        res.render('courses/edit-courses', { customerId: customerId, courseId: courseId, course: course, courses: courses })
+
+    } catch (error) {
+
     }
-    res.render('courses/edit-courses', { customerId: customerId, courseId: courseId })
 })
 
 router.put('/dashboard/customers/:customerId/courses/:courseId/edit', async (req, res) => {
@@ -263,7 +269,6 @@ router.put('/dashboard/customers/:customerId/courses/:courseId/edit', async (req
             return res.status(404).json({ error: 'Corso non trovato' });
         }
 
-        console.log(req.body)
 
         // Aggiorna i dettagli del corso
         await course.update(req.body);
@@ -275,6 +280,24 @@ router.put('/dashboard/customers/:customerId/courses/:courseId/edit', async (req
         res.status(500).json({ error: 'Errore interno del server' });
     }
 });
+
+router.delete('/dashboard/customers/:customerId/courses/:courseId/delete', async (req, res) => {
+    const { customerId, courseId } = req.params;
+    try {
+        const course = await Course.findByPk(courseId);
+
+        if (!course) {
+            return res.status(404).json({ message: 'Corso non trovato' });
+        }
+
+        // Elimina il corso dalla tabella dei corsi
+        await course.destroy();
+        res.redirect(`/user/dashboard/customers/${customerId}`)
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
 
 
 // ROTTA PER L'ELIMINAZIONE DEL CORISTA DA IMPLEMENTARE MEGLIO ANCHE CON L'ELIMINAZIONE DEI CORSI ASSOCIATI
@@ -288,7 +311,7 @@ router.delete('/dashboard/customers/:id/delete', async (req, res) => {
             }
         });
         // Reindirizza l'utente a una pagina appropriata dopo l'eliminazione del corsista
-        res.redirect('/user/dashboard');
+        res.redirect('/user/dashboard/customers');
     } catch (error) {
         // Gestisci eventuali errori
         console.error("Errore durante l'eliminazione del corsista:", error);
