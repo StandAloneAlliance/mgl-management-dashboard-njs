@@ -71,6 +71,11 @@
                                 </ul>
                                 <a href="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/edit">Modifica
                                     il corso</a>
+                                <form
+                                    action="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/delete?_method=DELETE"
+                                    method="post">
+                                    <input type="submit" value="Elimina il corso">
+                                </form>
                             </div>
                         </article>
                     </label>
