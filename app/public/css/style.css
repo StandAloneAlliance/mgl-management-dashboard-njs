@@ -154,6 +154,16 @@ h1 {
 .color-yellow{
     color: #FCD80E;
 }
+.border-table{
+    border-bottom: 3px solid #FCD80E;
+
+}
+.border-table-right{
+    border-left: 3px solid #FCD80E;
+    
+
+}
+
 /* style for update customers page */
 
 .bg-update{
