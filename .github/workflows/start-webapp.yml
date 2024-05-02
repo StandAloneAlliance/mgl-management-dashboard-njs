@@ -1,9 +1,10 @@
 name: Start Azure Web App
 
 on:
+  workflow_dispatch:
   schedule:
-    # Set to run at 8:30 AM (UTC) from Monday to Friday
-    - cron:  '30 8 * * 1-5'
+    # Set to run at 8:30 AM in italy from Monday to Friday
+    - cron:  '30 6 * * 1-5'
 
 jobs:
   deploy:
@@ -12,11 +13,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Login to Azure
-      uses: azure/login@v1
-      with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+    - name: Azure Custom Login
+      shell: bash
+      run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZ_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+      
     - name: Start Azure Web App
       run: |
           az webapp start --name 'mglmanagement' --resource-group 'mgl-consulting-resource-group'
