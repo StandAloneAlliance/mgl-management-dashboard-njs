@@ -49,9 +49,23 @@
                 </div>
                 <div class="col-10 bg-table px-0">
                     <h2 class="text-center  bg-white  py-4">Benvenuto nella <span class="text-primary"> MGL </span>
-                        <span class="text-warning">consulting </span>dashboard</h2>
+                        <span class="text-warning">consulting </span>dashboard
+                    </h2>
                     <div id="example1" class=" m-5 p-4 rounded bg-white">
 
+                        <div class="col-8">
+                            <form action="/user/dashboard/search_customers" method="GET"
+                                class="input-group d-flex responsive-search">
+                                <input type="text" class="form-control ms-3" name="nome" placeholder="Cerca per nome">
+                                <input type="text" class="form-control ms-3" name="cognome"
+                                    placeholder="Cerca per cognome">
+                                <input type="text" class="form-control ms-3" name="codice_fiscale"
+                                    placeholder="Cerca per C.F.">
+                                <div class="input-group-append mx-3">
+                                    <button class="btn btn-outline-secondary" type="submit">Cerca</button>
+                                </div>
+                            </form>
+                        </div>
 
                         <table class="table text-center ">
                             <thead>
