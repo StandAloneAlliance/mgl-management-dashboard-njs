@@ -14,15 +14,17 @@
                 <h3 class="text-center color-blue ">Benvenuto nella pagina del corsista <%= customer.name%>
                         <%=customer.surname%>
                 </h3>
-                <div class="cards">
+                <div class="cards text-center">
                     <% courses.forEach(course=> { %>
                         <label id="summary">
 
                             <article>
 
-                                <h4 class="text-center color-yellow pb-3">
+                                <h4 class="text-center text-secondary pb-3">
                                     <%= course.nome_corso %> aut. <%= course.numero_autorizzazione %>
                                 </h4>
+                            </article>
+                        </label>
                 </div>
                 <div class=" bg-card-details col-10  p-3 row justify-content-center">
                     <div class="col-xl-6 col-12 pb-3 ">
