@@ -51,22 +51,56 @@
                         </div>
                         <div class="col-10 bg-table px-0">
                             <h2 class="text-center  bg-white  py-4">Benvenuto nella <span class="color-blue"> MGL
-                                </span> <span class="color-yellow">consulting </span>dashboard</h2>
-                            <div class="col-8">
-                                <form action="/user/dashboard/search_customers" method="GET"
-                                    class="input-group d-flex responsive-search">
-                                    <input type="text" class="form-control ms-3" name="nome"
-                                        placeholder="Cerca per nome">
-                                    <input type="text" class="form-control ms-3" name="cognome"
-                                        placeholder="Cerca per cognome">
-                                    <input type="text" class="form-control ms-3" name="codice_fiscale"
-                                        placeholder="Cerca per C.F.">
-                                    <div class="input-group-append mx-3">
-                                        <button class="btn btn-outline-secondary" type="submit">Cerca</button>
-                                    </div>
-                                </form>
+                                </span> <span class="color-yellow">consulting </span>dashboard
+                            </h2>
+                            <div class="d-flex justify-content-center pt-3">
+                                <div class="col-8 ">
+                                    <form action="/user/dashboard/search_customers" method="GET"
+                                        class="input-group d-flex responsive-search">
+                                        <input oninput="controllaCampi()" type="text" id="campo1" class="form-control ms-3" name="nome"
+                                            placeholder="Cerca per nome">
+                                        <input oninput="controllaCampi()" type="text" id="campo2" class="form-control ms-3" name="cognome"
+                                            placeholder="Cerca per cognome">
+                                        <input oninput="controllaCampi()" id="campo3" type="text" class="form-control ms-3" name="codice_fiscale"
+                                            placeholder="Cerca per C.F.">
+                                        <div class="input-group-append mx-3">
+                                            <button id="btn" class="btn  btn-primary" type="submit">Cerca</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                            <div id="example1" class=" m-5 p-4 rounded bg-white">
+
+
+                            <!-- SCRIPT CON LA FUNCTION PER DISABILITARE IL BUTTON QUANDO TUTTI I CAMPI INPUT SONO VUOTI -->
+                            <script>
+                                // dichiariamo la funzione 
+                                function controllaCampi() {
+
+                                    // dichiariamo delle variabili che indicheranno tutti i campi input
+
+                                    let campo1 = document.getElementById("campo1").value;
+
+                                    let campo2 = document.getElementById("campo2").value;
+
+                                    let campo3 = document.getElementById('campo3').value;
+                        
+                                    let button = document.getElementById('btn')
+
+                                    // immettiamo la condizione che disabilitera il button fin quando almeno uno dei campiinput saranno riempiti
+                                    if (campo1 || campo2 || campo3 !== "" ) {
+                                        button.disabled = false;
+                                        console.log(button = 'abilitato')
+                                    } else {
+                                        button.disabled = true;
+                                    }
+                                }
+
+                                
+                            </script>
+                            <!-- END SCRIPT -->
+
+
+                            <div id="example1" class=" m-5 mt-4 p-4 rounded bg-white">
                                 <table class="table text-center ">
                                     <thead>
                                         <tr>

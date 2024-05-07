@@ -193,4 +193,10 @@ h1 {
 
 /*  */
 
+#btn:disabled{
+    background-color: gray;
+    color: red;
+
+}
+
   
