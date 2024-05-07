@@ -71,45 +71,37 @@
                                 <li>Stato: <strong style="color: rgb(237, 107, 31)">
                                         <%= course.status %>
                                     </strong></li>
-                                <% } %>
-                                    <% } else if (course.status==='Valido' ) { %>
-                                        <li>Stato: <strong style="color: rgb(19, 184, 4)">
-                                                <%= course.status %>
-                                            </strong></li>
-                                        <% } %>
+                                <% } else if (course.status==='Valido' ) { %>
+                                    <li>Stato: <strong style="color: rgb(19, 184, 4)">
+                                            <%= course.status %>
+                                        </strong></li>
+                                    <% } %>
                     </ul>
-                    <a href="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/edit">Modifica
-                        il corso</a>
-                    <form
-                        action="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/delete?_method=DELETE"
-                        method="post">
-                        <input type="submit" value="Elimina il corso">
-                    </form>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-info"><a class="no text-light"
+                                href="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/edit">Modifica
+                                il corso</a></button>
+                        <form class="btn btn-danger"
+                            action="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/delete?_method=DELETE"
+                            method="post">
+                            <input class="btn btn-transparent no text-light" type="submit" value="Elimina il corso">
+                        </form>
+                    </div>
+
                 </div>
                 </article>
                 </label>
-
-                </ul>
-                <div class="text-center mt-4">
-                    <button class="btn btn-info"><a class="no text-light"
-                            href="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/edit">Modifica
-                            il corso</a></button>
-                </div>
-
+                <% }); %>
             </div>
-            </article>
-            </label>
-
-        </div>
         </div>
         </div>
 
+        <div class="col-12 d-flex justify-content-center pt-3">
+            <a class="no text-light" href="/user/dashboard/customers"><button class="btn btn-danger"><i
+                        class="fa-solid fa-person-walking-dashed-line-arrow-right pe-2"></i>Torna alla
+                    dashboard</button></a>
+        </div>
     </main>
-    <div class="col-12 d-flex justify-content-center pt-3">
-        <a class="no text-light" href="/user/dashboard/customers"><button class="btn btn-danger"><i
-                    class="fa-solid fa-person-walking-dashed-line-arrow-right pe-2"></i>Torna alla
-                dashboard</button></a>
-    </div>
 
 </body>
 
