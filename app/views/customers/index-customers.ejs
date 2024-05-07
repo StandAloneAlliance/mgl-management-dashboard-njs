@@ -64,7 +64,7 @@
                                         <input oninput="controllaCampi()" id="campo3" type="text" class="form-control ms-3" name="codice_fiscale"
                                             placeholder="Cerca per C.F.">
                                         <div class="input-group-append mx-3">
-                                            <button id="btn" class="btn  btn-primary" type="submit">Cerca</button>
+                                            <button id="btn" class="btn  btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Cerca</button>
                                         </div>
                                     </form>
                                 </div>
@@ -157,9 +157,16 @@
 
                                                             <a class="no text-light"
                                                                 href="customers/<%= customer.id %>/edit">
-                                                                <li class="py-2"><i class="fa-solid fa-wrench"></i>
+                                                                <li class="drop py-2"><i class="fa-solid fa-wrench"></i>
                                                                     modifica</li>
                                                             </a>
+
+                                                            <a class="no text-light"
+                                                                href="">
+                                                                <li class="py-2 text-danger"><i class="fa-solid fa-trash"></i>
+                                                                    elimina</li>
+                                                            </a>
+
 
                                                         </ul>
                                                     </div>
