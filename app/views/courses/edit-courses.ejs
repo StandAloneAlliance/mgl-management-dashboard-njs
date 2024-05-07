@@ -88,13 +88,16 @@
                                     <div class="form-group my-4">
                                         <label class="control-label my-2">Inizio corso *</label>
                                         <input type="date" name="inizio_di_svolgimento" id="inizio_di_svolgimento"
-                                            class="form-control" value="<%= course.inizio_di_svolgimento %>" required>
+                                            class="form-control"
+                                            value="<%= new Date(course.inizio_di_svolgimento).toLocaleDateString('it-IT')%>"
+                                            required>
                                     </div>
                                     <!-- Fine corso -->
                                     <div class="form-group my-4">
                                         <label class="control-label my-2">Fine corso *</label>
                                         <input type="date" name="fine_svolgimento" id="fine_svolgimento"
-                                            value="<%= course.fine_svolgimento %>" class="form-control" required>
+                                            value="<%= new Date(course.fine_svolgimento).toLocaleDateString('it-IT')%>"
+                                            class="form-control" required>
                                     </div>
                                     <!-- Genere corso -->
                                     <div class="form-group my-4">

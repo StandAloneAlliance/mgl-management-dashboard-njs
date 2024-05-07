@@ -19,6 +19,7 @@ const loginRouter = require('./app/routes/login');
 const homeRouter = require('./app/routes/home');
 const registerUser = require('./app/routes/register')
 const dashboard = require('./app/routes/dashboard')
+const searchCustomers = require('./app/routes/search_customers')
 
 const app = express();
 
@@ -63,6 +64,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // UTILIZZO LE ROTTE
+app.use(searchCustomers)
 app.use(homeRouter)
 app.use(registerUser)
 app.use(loginRouter);

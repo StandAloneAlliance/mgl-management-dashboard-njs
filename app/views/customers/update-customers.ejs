@@ -10,7 +10,7 @@
         <div class="container  pb-5">
             <div class="d-flex pt-4 justify-content-center align-items-center">
                 <i class=" pe-3 fa-solid fa-shake text-secondary font-user  fa-wrench"></i>
-                <h2 class="text-center"><span class="text-secondary"> In questa pagina potrai modificare tutti i dati del corsista inseriti in precedenza</span></h2>
+                <h3 class="text-center"><span class="text-secondary"> In questa pagina potrai modificare tutti i dati del corsista inseriti in precedenza</span></h3>
             </div>
             
             <div class="row d-flex justify-content-center">
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <% } %>
-                                <div class="col-8">
+                                <div class="col-12 col-xl-8">
                                     <div class="card my-3">
                                         <div class="card-body">
                                             <form action="/user/dashboard/customers/<%= customer.id %>/edit?_method=PUT"
@@ -45,10 +45,10 @@
                                                 <!-- Card Header -->
                                                 <div class="card-header bg-white py-3">
                                                     <!-- Create Title -->
-                                                    <h1 class="text-center">Modifica i dati del corsista <%=
+                                                    <h3 class="text-center text-secondary">Modifica i dati del corsista <%=
                                                             customer.name %>
                                                             <%= customer.surname %>
-                                                    </h1>
+                                                    </h3>
                                                 </div>
                                                 <!-- Card Body -->
                                                 <div class="card-body">
@@ -145,7 +145,7 @@
                                                     <div
                                                         class="col-12 d-flex justify-content-center align-items-center my-5">
                                                         <button type="submit"
-                                                            class="btn btn-success fw-bold px-5">MODIFICA</button>
+                                                            class="btn btn-warning fw-bold px-5 text-secondary"><i class="pe-3 fa-solid text-secondary   fa-wrench"></i>MODIFICA</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -155,6 +155,9 @@
             </div>
         </div>
     </main>
+    <div class="col-12 d-flex justify-content-center pb-5">
+        <a class="no text-light" href="/user/dashboard/customers"><button class="btn btn-danger"><i class="fa-solid fa-person-walking-dashed-line-arrow-right pe-2"></i>Torna alla dashboard</button></a>
+    </div>
 </body>
 
 </html>

@@ -13,118 +13,137 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div style="height: 100vh;" class="col-2 px-0 ">
+                <div style="height: 100vh;" class="px-0 ">
                     <div class='d-flex justify-content-center py-3'>
-                        <img style="width: 130px;"
-                            src='https://tse1.mm.bing.net/th?id=OIP.3BO_r-ZIWWX_hdiWjAC7vwHaDI&pid=Api&P=0&h=180' />
-                    </div>
-                    <ul class="style-list-n text-center ps-0">
-                        <li class="pt-3 over ">
-                            <a href="/user/dashboard" class="no text-dark">
-                                <div class="d-flex  align-items-center">
+                        <div style="height: 100vh;" class="col-2  px-0 ">
+                            <div class='d-flex justify-content-center py-3'>
+                                <img style="width: 130px;"
+                                    src='https://tse1.mm.bing.net/th?id=OIP.3BO_r-ZIWWX_hdiWjAC7vwHaDI&pid=Api&P=0&h=180' />
+                            </div>
+                            <ul class="style-list-n text-center ps-0">
+                                <li class="pt-3 over ">
+                                    <a href="/user/dashboard" class="no text-dark">
+                                        <div class="d-flex  align-items-center">
 
-                                    <i class="fa-solid fa-house-user ps-4 text-info icon-ridimension"></i>
-                                    <h4 class="pt-2">Home</h4>
+                                            <i class="fa-solid fa-house-user ps-4 text-info icon-ridimension"></i>
+                                            <h5 class="pt-2">Home</h5>
+                                        </div>
+                                    </a>
+
+
+                                </li>
+                                <li class=" over py-3">
+                                    <div class="d-flex  align-items-center">
+                                        <i class="fa-solid text-dark icon-ridimension ps-4  fa-user-graduate"></i>
+                                        <h5 class="pt-2">Corsisti</h5>
+                                    </div>
+
+                                </li>
+                                <li class="over ">
+                                    <div class="d-flex  align-items-center">
+                                        <i class="fa-solid fa-chart-simple ps-4 icon-ridimension text-success"></i>
+                                        <h5 class="pt-2">Statistiche</h5>
+                                    </div>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="col-10 bg-table px-0">
+                            <h2 class="text-center  bg-white  py-4">Benvenuto nella <span class="color-blue"> MGL
+                                </span> <span class="color-yellow">consulting </span>dashboard</h2>
+                            <div class="col-8">
+                                <form action="/user/dashboard/search_customers" method="GET"
+                                    class="input-group d-flex responsive-search">
+                                    <input type="text" class="form-control ms-3" name="nome"
+                                        placeholder="Cerca per nome">
+                                    <input type="text" class="form-control ms-3" name="cognome"
+                                        placeholder="Cerca per cognome">
+                                    <input type="text" class="form-control ms-3" name="codice_fiscale"
+                                        placeholder="Cerca per C.F.">
+                                    <div class="input-group-append mx-3">
+                                        <button class="btn btn-outline-secondary" type="submit">Cerca</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="example1" class=" m-5 p-4 rounded bg-white">
+                                <table class="table text-center ">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Foto</th>
+                                            <th scope="col">Nome e Cognome</th>
+                                            <th scope="col">Codice Fiscale</th>
+                                            <th scope="col">Mansione</th>
+                                            <th scope="col">Azioni</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% customers.forEach(customer=> { %>
+                                            <tr>
+                                                <th scope="row"><i
+                                                        class="fa-solid icon-ridimension pe-0 fa-user-graduate"></i>
+                                                </th>
+                                                <td>
+                                                    <p class="pt-1 mb-0">
+                                                        <%= customer.name %>
+                                                            <%= customer.surname %>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="pt-1 mb-0">
+                                                        <%= customer.cfr %>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="pt-1 mb-0">
+                                                        <%= customer.task %>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button"
+                                                            class="btn text-light btn-info dropdown-toggle"
+                                                            data-bs-toggle="dropdown" aria-expanded="true">
+                                                            <i class="fa-solid fa-user-gear"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu py-0 bg-info text-center text-light">
+                                                            <a class="no text-light"
+                                                                href="customers/<%= customer.id %>">
+                                                                <li class="drop py-2 "><i
+                                                                        class="fa-solid fa-circle-info"></i> dettagli
+                                                                </li>
+                                                            </a>
+
+                                                            <a class="no text-light"
+                                                                href="customers/<%= customer.id %>/assign-courses">
+                                                                <li class="drop py-2"><i
+                                                                        class="fa-solid fa-square-plus"></i> assegna
+                                                                </li>
+                                                            </a>
+
+                                                            <a class="no text-light"
+                                                                href="customers/<%= customer.id %>/edit">
+                                                                <li class="py-2"><i class="fa-solid fa-wrench"></i>
+                                                                    modifica</li>
+                                                            </a>
+
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                    </tbody>
+                                </table>
+
+                                <div class="d-flex justify-content-center mt-4">
+                                    <button class="btn btn-info"><a class="text-center no text-light"
+                                            href="customers/create-customers"><i class="fa-solid fa-plus"></i> Crea il
+                                            corsista</a></button>
                                 </div>
-                            </a>
-
-
-                        </li>
-                        <li class=" over py-3">
-                            <div class="d-flex  align-items-center">
-                                <i class="fa-solid text-dark icon-ridimension ps-4  fa-user-graduate"></i>
-                                <h4 class="pt-2">Corsisti</h4>
                             </div>
-
-                        </li>
-                        <li class="over ">
-                            <div class="d-flex  align-items-center">
-                                <i class="fa-solid fa-chart-simple ps-4 icon-ridimension text-success"></i>
-                                <h4 class="pt-2">Statistiche</h4>
-                            </div>
-
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="col-10 bg-table px-0">
-                    <h2 class="text-center  bg-white  py-4">Benvenuto nella <span class="text-primary"> MGL </span>
-                        <span class="text-warning">consulting </span>dashboard</h2>
-                    <div id="example1" class=" m-5 p-4 rounded bg-white">
-
-
-                        <table class="table text-center ">
-                            <thead>
-                                <tr>
-                                    <th scope="col">foto</th>
-                                    <th scope="col">nome e cognome</th>
-                                    <th scope="col">codice fiscale</th>
-                                    <th scope="col">mansione</th>
-                                    <th scope="col">azioni</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% customers.forEach(customer=> { %>
-                                    <tr>
-                                        <th scope="row"><i class="fa-solid fa-user icon-ridimension "></i></th>
-                                        <td>
-                                            <p class="pt-1 mb-0">
-                                                <%= customer.name %>
-                                                    <%= customer.surname %>
-                                            </p>
-                                        </td>
-                                        <td>
-                                            <p class="pt-1 mb-0">
-                                                <%= customer.cfr %>
-                                            </p>
-                                        </td>
-                                        <td>
-                                            <p class="pt-1 mb-0">
-                                                <%= customer.task %>
-                                            </p>
-                                        </td>
-                                        <td>
-
-
-                                            <div class="btn-group">
-                                                <button type="button" class="btn text-light btn-info dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="true">
-                                                    seleziona:
-                                                </button>
-                                                <ul class="dropdown-menu py-0 bg-info text-center text-light">
-                                                    <li class="drop py-2 "><a class="no text-light"
-                                                            href="customers/<%= customer.id %>"><i
-                                                                class="fa-solid fa-circle-info"></i> dettagli</a></li>
-
-                                                    <li class="drop py-2"><a class="no text-light"
-                                                            href="customers/<%= customer.id %>/assign-courses"><i
-                                                                class="fa-solid fa-square-plus"></i> assegna</a></li>
-
-                                                    <li class="py-2"><a class="no text-light"
-                                                            href="customers/<%= customer.id %>/edit"> <i
-                                                                class="fa-solid fa-wrench"></i> modifica</a></li>
-
-                                                </ul>
-                                            </div>
-
-                                        </td>
-
-
-                                    </tr>
-
-                            </tbody>
-                            <% }); %>
-                        </table>
-
-                        <div class="d-flex justify-content-center mt-4">
-                            <button class="btn btn-info"><a class="text-center no text-light"
-                                    href="customers/create-customers"><i class="fa-solid fa-plus"></i> Crea il
-                                    corsista</a></button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
     </main>
 </body>
