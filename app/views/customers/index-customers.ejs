@@ -60,48 +60,20 @@
                                 <div class="col-8 ">
                                     <form action="/user/dashboard/search_customers" method="GET"
                                         class="input-group d-flex responsive-search">
-                                        <input oninput="controllaCampi()" type="text" id="campo1" class="form-control ms-3" name="nome"
-                                            placeholder="Cerca per nome">
-                                        <input oninput="controllaCampi()" type="text" id="campo2" class="form-control ms-3" name="cognome"
-                                            placeholder="Cerca per cognome">
-                                        <input oninput="controllaCampi()" id="campo3" type="text" class="form-control ms-3" name="codice_fiscale"
+                                        <input oninput="controllaCampi()" type="text" id="campo1"
+                                            class="form-control ms-3" name="nome" placeholder="Cerca per nome">
+                                        <input oninput="controllaCampi()" type="text" id="campo2"
+                                            class="form-control ms-3" name="cognome" placeholder="Cerca per cognome">
+                                        <input oninput="controllaCampi()" id="campo3" type="text"
+                                            class="form-control ms-3" name="codice_fiscale"
                                             placeholder="Cerca per C.F.">
                                         <div class="input-group-append mx-3">
-                                            <button id="btn" class="btn  btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass pe-1"></i> Cerca</button>
+                                            <button id="btn" class="btn  btn-primary" type="submit"><i
+                                                    class="fa-solid fa-magnifying-glass pe-1"></i> Cerca</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-
-
-                            <!-- SCRIPT CON LA FUNCTION PER DISABILITARE IL BUTTON QUANDO TUTTI I CAMPI INPUT SONO VUOTI -->
-                            <script>
-                                // dichiariamo la funzione 
-                                function controllaCampi() {
-
-                                    // dichiariamo delle variabili che indicheranno tutti i campi input
-
-                                    let campo1 = document.getElementById("campo1").value;
-
-                                    let campo2 = document.getElementById("campo2").value;
-
-                                    let campo3 = document.getElementById('campo3').value;
-                        
-                                    let button = document.getElementById('btn')
-
-                                    // immettiamo la condizione che disabilitera il button fin quando almeno uno dei campiinput saranno riempiti
-                                    if (campo1 || campo2 || campo3 !== "" ) {
-                                        button.disabled = false;
-                                        console.log(button = 'abilitato')
-                                    } else {
-                                        button.disabled = true;
-                                    }
-                                }
-
-                                
-                            </script>
-                            <!-- END SCRIPT -->
-
 
                             <div id="example1" class=" m-5 mt-4 p-5 pt-4 rounded bg-white">
                                 <table class="table text-center ">
@@ -116,7 +88,7 @@
                                     </thead>
                                     <tbody>
                                         <% customers.forEach(customer=> { %>
-                                            
+
                                             <tr>
                                                 <th scope="row"><i
                                                         class="fa-solid icon-ridimension pe-0 fa-user-graduate"></i>
@@ -165,25 +137,29 @@
                                                                     modifica</li>
                                                             </a>
 
-                                                            <a class="no text-light"
-                                                                href="">
-                                                                <li class="py-2 text-danger"><i class="fa-solid fa-trash"></i>
-                                                                    elimina</li>
-                                                            </a>
+                                                            <form class="no text-light customer-delete-button"
+                                                                action="/user/dashboard/customers/<%= customer.id %>/delete?_method=DELETE"
+                                                                method="post" data-customer-name="<%= customer.name %>">
+                                                                <li class="py-2 text-danger text-align-center">
+                                                                    <i class="fa-solid fa-trash"></i>
+                                                                    <input class="px-0 btn btn-transparent"
+                                                                        type="submit" value="Elimina">
+                                                                </li>
+                                                            </form>
 
 
                                                         </ul>
                                                     </div>
                                                 </td>
                                             </tr>
-                                        <% }); %>
+                                            <% }); %>
                                     </tbody>
                                 </table>
 
                                 <div class="d-flex justify-content-center mt-4">
                                     <button class="btn btn-info">
-                                        <a class="text-center no text-light"
-                                            href="customers/create-customers"><i class="fa-solid fa-plus"></i> Crea il
+                                        <a class="text-center no text-light" href="customers/create-customers"><i
+                                                class="fa-solid fa-plus"></i> Crea il
                                             corsista</a></button>
                                 </div>
                             </div>

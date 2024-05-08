@@ -2,47 +2,25 @@ $(document).ready(function () {
     $('select[name="nome_corso"]').select2();
 });
 
+// SCRIPT CON LA FUNCTION PER DISABILITARE IL BUTTON QUANDO TUTTI I CAMPI INPUT SONO VUOTI 
+function controllaCampi() {
 
-// RECUPERO TUTTI I DELETE_BUTTON DI OGNI PRODOTTO
-const customerDeleteButton = document.querySelectorAll('.customer-delete-button');
+    // dichiariamo delle variabili che indicheranno tutti i campi input
 
-// CICLO L'ARRAY CONTENENTE TUTTI I DELETE_BUTTON
-customerDeleteButton.forEach((button) => {
+    let campo1 = document.getElementById("campo1").value;
 
-    // PER OGNI DELETE_BUTTON, AGGIUNGO UN EVENT_LISTENER "CLICK"
-    button.addEventListener('click', (event) => {
+    let campo2 = document.getElementById("campo2").value;
 
-        // QUANDO L'UTENTE CLICCA SUL DELETE_BUTTON, IL FORM NON VIENE AVVIATO GRAZIE A QUESTO COMANDO
-        event.preventDefault();
+    let campo3 = document.getElementById('campo3').value;
 
-        // QUANDO L'UTENTE CLICCA SUL DELETE_BUTTON, MI VIENE PASSATO UN DATA ATTRIBUTE, LO RECUPERO TRAMITE QUESTA STRINGA
-        const customerName = button.getAttribute('data-customer-name');
+    let button = document.getElementById('btn')
 
-        // RECUPERO IL TAG HTML DELLA MODALE DOVE INSERIRE IL DATA ATTRIBUTE RECUPERATO PRIMA
-        const modalCustomerName = document.getElementById('modal-customer-name');
-
-        // INSERISCO IL DATA ATTRIBUTE DENTRO IL "MODAL_PRODUCT_NAME"
-        modalCustomerName.innerText = customerName;
-
-        // RECUPERO L'HTML DELLA MODALE "MODAL_PRODUCT_DELETE", DALLA VIEW ADMIN -> PARTIALS
-        const modal = document.getElementById('customerConfirmDeleteModal');
-
-        // CREO LA MODALE COME OGGETTO DI BOOTSTRAP, PARTENDO DALL'HTML DELLA MODALE RECUPERATA PRIMA
-        const bootstrapModal = new bootstrap.Modal(modal);
-
-        // QUANDO L'UTENTE CLICCA NEL DELETE_BUTTON, MOSTRO LA "BOOTSTRAP_MODAL"
-        bootstrapModal.show();
-
-        // RECUPERO IL PULSANTE DI "CONFERMA CANCELLAZIONE" PRESENTE NELLA MODALE
-        const customerConfirmDeleteButton = document.getElementById('customer-confirm-delete-button');
-
-        // AL PULSANTE DI "CONFERMA CANCELLAZIONE", AGGIUNGO UN EVENT_LISTENER "CLICK"
-        customerConfirmDeleteButton.addEventListener('click', () => {
-
-            // QUANDO L'UTENTE CLICCA IL PULSANTE DI "CONFERMA CANCELLAZIONE", RECUPERO IL "DELETE_BUTTON", ED ESEGUO LA FORM DI CANCELLAZIONE
-            button.submit();
-        })
-    })
-})
-
+    // immettiamo la condizione che disabilitera il button fin quando almeno uno dei campiinput saranno riempiti
+    if (campo1 || campo2 || campo3 !== "") {
+        button.disabled = false;
+        console.log(button = 'abilitato')
+    } else {
+        button.disabled = true;
+    }
+}
 
