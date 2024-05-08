@@ -187,8 +187,9 @@ h1 {
 
 /* effetti di hover */
 .over :hover{
-    background-color: gray;
+    background-color: rgb(189, 243, 255);
     cursor: pointer;
+    
 }
 
 
