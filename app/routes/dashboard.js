@@ -76,17 +76,6 @@ router.get('/dashboard/customers/:id', async (req, res) => {
         // TROVO IL CORSISTA NEL DB BASATO SULL'ID
         const customer = await Customer.findOne({ where: { id: id }, include: { model: Course, through: { attributes: [] } } });
         const courses = customer.Courses
-        if (customer) {
-            const numberOfCourses = customer.Courses.length;
-
-            if (numberOfCourses > 0) {
-                console.log(`Il cliente ha ${numberOfCourses} corsi associati.`);
-            } else {
-                console.log("Il cliente non ha corsi associati.");
-            }
-        } else {
-            console.log("Cliente non trovato.");
-        }
         // VERIFICO SE IL CORISTA ESISTE
         if (customer) {
             // SE IL CORSISTA è STATO TROVATO DO IL RENDER SULLA VIEW

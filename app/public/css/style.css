@@ -7,6 +7,7 @@
 h1 {
     color: green;
 }
+
 /* font-family */
 .garamond {
     font-family: "EB Garamond", serif;
@@ -14,56 +15,65 @@ h1 {
     font-weight: weight;
     font-style: normal;
 }
-  
-.no{
+
+.no {
     text-decoration: none;
 }
+
 /* font */
-.font{
+.font {
     font-size: 60px;
 }
-.font-user{
+
+.font-user {
     font-size: 90px;
 }
-.font-exit{
+
+.font-exit {
     font-size: 50px;
 }
+
 /* //////// */
-.jumbotron{
-    background: rgb(255,255,255);
-    background: linear-gradient(90deg, rgba(251,223,120,1) 0%, rgba(255,202,6,0.9809173669467787) 35%, rgb(39, 71, 188) 100%);
+.jumbotron {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(90deg, rgba(251, 223, 120, 1) 0%, rgba(255, 202, 6, 0.9809173669467787) 35%, rgb(39, 71, 188) 100%);
     width: 100%;
 }
-.h{
+
+.h {
     border: 5px solid rgb(135, 222, 139);
-    height:310px;
+    height: 310px;
 
 }
 
 
-.radius-50{
+.radius-50 {
     border-radius: 50%;
-    
+
 }
+
 /* colors */
-.beautiful-blue{
+.beautiful-blue {
     border-radius: 10px;
     background-color: #106FB5;
     border: 0;
-    
+
 }
-.color-input{
+
+.color-input {
     border: 0;
     border-bottom: 2px solid gray;
     background-color: rgba(0, 0, 0, 0);
     min-width: 260px;
-    
+
 }
-.bg-login{
-    
+
+.bg-login {
+
     background: linear-gradient(90deg, rgb(241, 244, 255) 10%, rgb(120, 224, 224) 83%);
-    
+
 }
+
 /* dashboard page */
 
 
@@ -74,15 +84,15 @@ h1 {
     font-size: 28px;
     color: #FFFFFF;
     padding: 20px;
-    
-    
+
+
     transition-duration: 0.4s;
     text-decoration: none;
     overflow: hidden;
     cursor: pointer;
-  }
-  
-  .button:after {
+}
+
+.button:after {
     content: "";
     background: #f1f1f1;
     display: block;
@@ -93,89 +103,98 @@ h1 {
     margin-top: -120%;
     opacity: 0;
     transition: all 0.8s
-  }
-  
-  .button:active:after {
+}
+
+.button:active:after {
     padding: 0;
     margin: 0;
     opacity: 1;
     transition: 0s
-  }
+}
 
 
 /*  */
 /* style card  register and login page*/
 
-.card-register{
-    background: rgb(120,251,227);
-    background: linear-gradient(180deg, rgba(120,251,227,1) 0%, rgba(1,177,255,0.9809173669467787) 51%, rgba(5,102,255,1) 100%);
+.card-register {
+    background: rgb(120, 251, 227);
+    background: linear-gradient(180deg, rgba(120, 251, 227, 1) 0%, rgba(1, 177, 255, 0.9809173669467787) 51%, rgba(5, 102, 255, 1) 100%);
     border-radius: 30px;
     box-shadow: 10px 10px 15px 5px #2b2c2c88;
-    
+
 }
 
 
 /* style card for index.customers  */
 
-.card-coursest{
+.card-coursest {
     border: 5px solid black;
     background-color: rgba(154, 175, 175, 0.733);
     /* background: linear-gradient(180deg, rgba(120,251,227,1) 0%, rgba(1,177,255,0.9809173669467787) 51%, rgba(5,102,255,1) 100%); */
     border-radius: 30px;
 }
 
-.bg-table{
+.bg-table {
     background-color: rgba(160, 245, 251, 0.769);
     background: linear-gradient(90deg, rgb(219, 246, 250) 10%, rgba(120, 224, 224, 0.653) 83%);
 }
-.bg-white{
+
+.bg-white {
     background-color: rgb(255, 255, 255);
 }
-.drop{
+
+.drop {
     border-bottom: rgb(255, 255, 255) solid 1px;
 }
-.style-list-n{
+
+.style-list-n {
     list-style-type: none;
 
 }
-.icon-ridimension{
+
+.icon-ridimension {
     font-size: 30px;
     padding-right: 10px;
 }
 
 #example1 {
     border: 1px solid rgba(186, 179, 179, 0.731);
-    
+
     box-shadow: 5px 5px 5px 5px #928c8c88;
 }
-.color-blue{
+
+.color-blue {
     color: #0F6FB1;
 }
-.bg-blue{
+
+.bg-blue {
     background-color: #0F6FB1;
 }
-.color-yellow{
+
+.color-yellow {
     color: #FCD80E;
 }
-.border-table{
+
+.border-table {
     border-bottom: 3px solid #FCD80E;
 
 }
-.border-table-right{
+
+.border-table-right {
     border-left: 3px solid #FCD80E;
-    
+
 
 }
 
 /* style for update customers page */
 
-.bg-update{
+.bg-update {
     background: linear-gradient(90deg, rgba(243, 244, 235, 0.808) 10%, #f9d43286 83%);
 }
 
 /* style for details page */
 
-.bg-card-details{
+.bg-card-details {
     background-image: url('https://i.pinimg.com/originals/6c/e3/c4/6ce3c4662230452b2daec76cabd99a2b.jpg');
     border: 5px solid rgb(245, 244, 244);
     border-radius: 10px;
@@ -183,25 +202,25 @@ h1 {
     background-size: cover;
     box-shadow: 5px 5px 5px 5px #635f5f90
 }
-.bg-lightgray{
+
+.bg-lightgray {
     background: linear-gradient(90deg, rgb(247, 247, 247) 50%, rgb(235, 218, 107) 100%);
 }
+
 /*  */
 
 /* effetti di hover */
-.over :hover{
+.over :hover {
     background-color: rgb(189, 243, 255);
     cursor: pointer;
-    
+
 }
 
 
 /*  */
 
-#btn:disabled{
+#btn:disabled {
     background-color: gray;
     color: red;
 
 }
-
-  

@@ -1,5 +1,5 @@
 const { body, validationResult, ValidationError } = require('express-validator');
-const Customer = require('../../models/index').Customer
+const { Customer } = require('../../models/index')
 
 // Regole di validazione per il campo "name"
 const validateName = body('name')
