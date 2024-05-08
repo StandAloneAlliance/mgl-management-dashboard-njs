@@ -100,7 +100,7 @@
                             <!-- END SCRIPT -->
 
 
-                            <div id="example1" class=" m-5 mt-4 p-4 rounded bg-white">
+                            <div id="example1" class=" m-5 mt-4 p-5 pt-4 rounded bg-white">
                                 <table class="table text-center ">
                                     <thead>
                                         <tr>
@@ -113,6 +113,7 @@
                                     </thead>
                                     <tbody>
                                         <% customers.forEach(customer=> { %>
+                                            
                                             <tr>
                                                 <th scope="row"><i
                                                         class="fa-solid icon-ridimension pe-0 fa-user-graduate"></i>
@@ -172,12 +173,13 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <% }); %>
+                                        <% }); %>
                                     </tbody>
                                 </table>
 
                                 <div class="d-flex justify-content-center mt-4">
-                                    <button class="btn btn-info"><a class="text-center no text-light"
+                                    <button class="btn btn-info">
+                                        <a class="text-center no text-light"
                                             href="customers/create-customers"><i class="fa-solid fa-plus"></i> Crea il
                                             corsista</a></button>
                                 </div>

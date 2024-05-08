@@ -83,7 +83,7 @@
                         <button class="btn btn-info"><a class="no text-light"
                                 href="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/edit">Modifica
                                 il corso</a></button>
-                        <form class="btn btn-danger"
+                        <form class="btn btn-danger p-0"
                             action="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/delete?_method=DELETE"
                             method="post">
                             <input class="btn btn-transparent no text-light" type="submit" value="Elimina il corso">
@@ -98,7 +98,7 @@
         </div>
         </div>
 
-        <div class="col-12 d-flex justify-content-center pt-3">
+        <div class="col-12 d-flex justify-content-center py-3">
             <a class="no text-light" href="/user/dashboard/customers"><button class="btn btn-danger"><i
                         class="fa-solid fa-person-walking-dashed-line-arrow-right pe-2"></i>Torna alla
                     dashboard</button></a>
