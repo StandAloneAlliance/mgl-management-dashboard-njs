@@ -151,6 +151,9 @@ h1 {
 .color-blue{
     color: #0F6FB1;
 }
+.bg-blue{
+    background-color: #0F6FB1;
+}
 .color-yellow{
     color: #FCD80E;
 }
