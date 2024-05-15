@@ -14,89 +14,92 @@
                 <h3 class="text-center color-blue ">Benvenuto nella pagina del corsista <%= customer.name%>
                         <%=customer.surname%>
                 </h3>
-                <div class="cards">
-                    <% courses.forEach(course=> { %>
+                <% courses.forEach(course=> { %>
+                    <div class="cards text-center">   
                         <label id="summary">
 
                             <article>
 
-                                <h4 class="text-center color-yellow pb-3">
+                                <h4 class="text-center text-secondary pb-3">
                                     <%= course.nome_corso %> aut. <%= course.numero_autorizzazione %>
                                 </h4>
-                </div>
-                <div class=" bg-card-details col-10  p-3 row justify-content-center">
-                    <div class="col-xl-6 col-12 pb-3 ">
-                        <h3 class="text-center">
-                            <%= customer.name%>
-                                <%=customer.surname%>
-                        </h3>
-                        <div class="justify-content-center pt-5 d-flex">
-                            <i style="font-size: 220px;" class="text-center fa-solid  fa-user-tie"></i>
+                            </article>
+                        </label>
+                    </div>
+                
+                    <div class=" bg-card-details col-10  p-3 row justify-content-center">
+                        <div class="col-xl-6 col-12 pb-3 ">
+                            
+                            <h3 class="text-center">
+                                <%= customer.name%>
+                                    <%=customer.surname%>
+                            </h3>
+                            <div class="justify-content-center pt-4 d-flex">
+                                <i style="font-size: 220px;" class="text-center fa-solid  fa-user-tie"></i>
+                            </div>
+
+                        </div>
+                        <ul class="list-unstyled col-xl-6 col-12  mb-0">
+                            <li>
+                                <strong>
+                                    <%= course.genere_corso %>
+                                </strong>
+                            </li>
+                            </li>
+                            <li>N° partecipanti: <strong>
+                                    <%= course.posti_disponibili %>
+                                </strong></li>
+                            <li>Città: <%= course.cap_sede_corso %>, <%= course.città_di_svolgimento %> (<%=
+                                            course.provincia %>)</li>
+                            <li>Sede: <%= course.indirizzo_di_svolgimento %>
+                            </li>
+                            <li>Direttore: <strong>
+                                    <%= course.direttore_corso %>
+                                </strong></li>
+                            <li>Docente: <strong>
+                                    <%= course.docenti_corso %>
+                                </strong></li>
+                            <li>Data Inizio: <%= new Date(course.inizio_di_svolgimento).toLocaleDateString('it-IT') %>
+                            </li>
+                            <li>Data Termine: <%= new Date(course.fine_svolgimento).toLocaleDateString('it-IT') %>
+                            </li>
+                            <li>Durata: <%= course.durata_corso %> ore</li>
+                            <li>Validità: <%= course.validità %> anni</li>
+                            <li>Data di scadenza: <%= new Date(course.data_scadenza).toLocaleDateString('it-IT') %>
+                            </li>
+                            <% if (course.status==='Scaduto' ) { %>
+                                <li>Stato: <strong style="color: rgb(237, 31, 31)">
+                                        <%= course.status %>
+                                    </strong></li>
+                                <% } else if (course.status==='In Scadenza' ) { %>
+                                    <li>Stato: <strong style="color: rgb(237, 107, 31)">
+                                            <%= course.status %>
+                                        </strong></li>
+                                    <% } else if (course.status==='Valido' ) { %>
+                                        <li>Stato: <strong style="color: rgb(19, 184, 4)">
+                                                <%= course.status %>
+                                            </strong></li>
+                                        <% } %>
+                        </ul>
+                        <div class="text-center mt-4">
+                            <button class="btn me-2 mb-2 btn-info"><a class="no text-light"
+                                    href="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/edit">Modifica
+                                    il corso</a></button>
+                            <form class="btn btn-danger mb-2 p-0"
+                                action="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/delete?_method=DELETE"
+                                method="post">
+                                <input class="btn btn-transparent no text-light" type="submit" value="Elimina il corso">
+                            </form>
                         </div>
 
                     </div>
-                    <ul class="list-unstyled col-xl-6 col-12  mb-0">
-                        <li>
-                            <strong>
-                                <%= course.genere_corso %>
-                            </strong>
-                        </li>
-                        </li>
-                        <li>N° partecipanti: <strong>
-                                <%= course.posti_disponibili %>
-                            </strong></li>
-                        <li>Città: <%= course.cap_sede_corso %>, <%= course.città_di_svolgimento %> (<%=
-                                        course.provincia %>)</li>
-                        <li>Sede: <%= course.indirizzo_di_svolgimento %>
-                        </li>
-                        <li>Direttore: <strong>
-                                <%= course.direttore_corso %>
-                            </strong></li>
-                        <li>Docente: <strong>
-                                <%= course.docenti_corso %>
-                            </strong></li>
-                        <li>Data Inizio: <%= new Date(course.inizio_di_svolgimento).toLocaleDateString('it-IT') %>
-                        </li>
-                        <li>Data Termine: <%= new Date(course.fine_svolgimento).toLocaleDateString('it-IT') %>
-                        </li>
-                        <li>Durata: <%= course.durata_corso %> ore</li>
-                        <li>Validità: <%= course.validità %> anni</li>
-                        <li>Data di scadenza: <%= new Date(course.data_scadenza).toLocaleDateString('it-IT') %>
-                        </li>
-                        <% if (course.status==='Scaduto' ) { %>
-                            <li>Stato: <strong style="color: rgb(237, 31, 31)">
-                                    <%= course.status %>
-                                </strong></li>
-                            <% } else if (course.status==='In Scadenza' ) { %>
-                                <li>Stato: <strong style="color: rgb(237, 107, 31)">
-                                        <%= course.status %>
-                                    </strong></li>
-                                <% } else if (course.status==='Valido' ) { %>
-                                    <li>Stato: <strong style="color: rgb(19, 184, 4)">
-                                            <%= course.status %>
-                                        </strong></li>
-                                    <% } %>
-                    </ul>
-                    <div class="text-center mt-4">
-                        <button class="btn btn-info"><a class="no text-light"
-                                href="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/edit">Modifica
-                                il corso</a></button>
-                        <form class="btn btn-danger"
-                            action="/user/dashboard/customers/<%= customer.id %>/courses/<%= course.id %>/delete?_method=DELETE"
-                            method="post">
-                            <input class="btn btn-transparent no text-light" type="submit" value="Elimina il corso">
-                        </form>
-                    </div>
-
-                </div>
-                </article>
-                </label>
+                    
                 <% }); %>
             </div>
         </div>
-        </div>
+        
 
-        <div class="col-12 d-flex justify-content-center pt-3">
+        <div class="col-12 d-flex justify-content-center py-5">
             <a class="no text-light" href="/user/dashboard/customers"><button class="btn btn-danger"><i
                         class="fa-solid fa-person-walking-dashed-line-arrow-right pe-2"></i>Torna alla
                     dashboard</button></a>
