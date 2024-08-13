@@ -1,7 +1,8 @@
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const LocalStrategy = require('passport-local').Strategy
-const { User } = require('../../models/index')
+const { User, Guest } = require('../../models/index')
+
 
 passport.use('local-login', new LocalStrategy({
     usernameField: 'email', // campo email nel body della richiesta
@@ -25,13 +26,35 @@ passport.use('local-login', new LocalStrategy({
     }
 ));
 
+// passport.serializeUser((user, done) => {
+//     done(null, user.id);
+// });
+
+// passport.deserializeUser(async (id, done) => {
+//     try {
+//         const user = await User.findByPk(id);
+//         if (!user) {
+//             return done(new Error('Utente non trovato'));
+//         }
+//         done(null, user);
+//     } catch (error) {
+//         done(error);
+//     }
+// });
+
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, { id: user.id, type: user instanceof User ? 'User' : 'Guest' });
 });
 
-passport.deserializeUser(async (id, done) => {
+passport.deserializeUser(async (obj, done) => {
     try {
-        const user = await User.findByPk(id);
+        let user;
+        if (obj.type === 'User') {
+            user = await User.findByPk(obj.id);
+        } else if (obj.type === 'Guest') {
+            user = await Guest.findByPk(obj.id);
+        }
+
         if (!user) {
             return done(new Error('Utente non trovato'));
         }
@@ -40,6 +63,8 @@ passport.deserializeUser(async (id, done) => {
         done(error);
     }
 });
+
+
 
 
 
