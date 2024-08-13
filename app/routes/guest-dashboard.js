@@ -6,7 +6,7 @@ router.get('/dashboard', (req, res) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/guest-login')
     }
-    res.render('guest-dashboard')
+    res.render('guest-dashboard', { guest: req.user })
 })
 
 module.exports = router
