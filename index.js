@@ -38,7 +38,6 @@ sequelize.authenticate().then(() => {
     .catch(err => {
         console.log('Errore durante la connessione', err)
     })
-// app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());

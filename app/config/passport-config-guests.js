@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const { Guest } = require('../../models/index');  // Assicurati che il percorso sia corretto
+const { Guest } = require('../../models/index');
 const bcrypt = require('bcrypt');
 
 // Strategia per i guest
@@ -10,19 +10,16 @@ passport.use('local-guest-login', new LocalStrategy({
     passReqToCallback: true
 }, async (req, email, password, done) => {
     try {
-        // Cerca il guest nella tabella `guests`
         const guest = await Guest.findOne({ where: { email } });
         if (!guest) {
             return done(null, false, { message: 'Ospite non trovato' });
         }
 
-        // Confronta la password
         const isValidPassword = await bcrypt.compare(password, guest.password);
         if (!isValidPassword) {
             return done(null, false, { message: 'Password non valida' });
         }
 
-        // Se tutto è corretto, autentica il guest
         return done(null, guest);
     } catch (error) {
         return done(error);
@@ -51,7 +48,5 @@ passport.deserializeUser(async (obj, done) => {
         done(error);
     }
 });
-
-
 
 module.exports = passport

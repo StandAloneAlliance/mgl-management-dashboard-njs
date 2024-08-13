@@ -3,11 +3,11 @@ const bcrypt = require('bcrypt')
 const LocalStrategy = require('passport-local').Strategy
 const { User, Guest } = require('../../models/index')
 
-
+// Strategia per gli user
 passport.use('local-login', new LocalStrategy({
-    usernameField: 'email', // campo email nel body della richiesta
-    passwordField: 'password', // campo password nel body della richiesta
-    passReqToCallback: true // permette di passare l'intera richiesta alla callback
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
 },
     async (req, email, password, done) => {
         try {
@@ -25,22 +25,6 @@ passport.use('local-login', new LocalStrategy({
         }
     }
 ));
-
-// passport.serializeUser((user, done) => {
-//     done(null, user.id);
-// });
-
-// passport.deserializeUser(async (id, done) => {
-//     try {
-//         const user = await User.findByPk(id);
-//         if (!user) {
-//             return done(new Error('Utente non trovato'));
-//         }
-//         done(null, user);
-//     } catch (error) {
-//         done(error);
-//     }
-// });
 
 passport.serializeUser((user, done) => {
     done(null, { id: user.id, type: user instanceof User ? 'User' : 'Guest' });
@@ -63,9 +47,5 @@ passport.deserializeUser(async (obj, done) => {
         done(error);
     }
 });
-
-
-
-
 
 module.exports = passport
