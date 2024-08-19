@@ -1,7 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
-const User = require('./user')
-const Course = require('./course')
+const { User, Course, Guest } = require('../models/index')
 module.exports = (sequelize, DataTypes) => {
   class Customer extends Model {
     /**
@@ -16,8 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'customer_id', // Nome del campo chiave esterna nella tabella pivot che fa riferimento a Customer
         otherKey: 'course_id', // Nome del campo chiave esterna nella tabella pivot che fa riferimento a Course
       });
-    }
+    };
+
   }
+
   Customer.init({
     id: {
       type: DataTypes.BIGINT,
@@ -49,4 +50,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'customers'
   });
   return Customer;
-};
+}
+

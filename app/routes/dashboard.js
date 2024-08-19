@@ -256,6 +256,7 @@ router.get('/dashboard/customers/:customerId/courses/:courseId/edit', async (req
 router.put('/dashboard/customers/:customerId/courses/:courseId/edit', async (req, res) => {
     try {
         const { customerId, courseId } = req.params;
+        const { course_completed } = req.body
 
         // Trova il cliente dal database
         const customer = await Customer.findByPk(customerId);
@@ -268,8 +269,6 @@ router.put('/dashboard/customers/:customerId/courses/:courseId/edit', async (req
         if (!course) {
             return res.status(404).json({ error: 'Corso non trovato' });
         }
-
-
         // Aggiorna i dettagli del corso
         await course.update(req.body);
 

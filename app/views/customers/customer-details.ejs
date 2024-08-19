@@ -15,7 +15,7 @@
                         <%=customer.surname%>
                 </h3>
                 <% courses.forEach(course=> { %>
-                    <div class="cards text-center">   
+                    <div class="cards text-center">
                         <label id="summary">
 
                             <article>
@@ -26,10 +26,10 @@
                             </article>
                         </label>
                     </div>
-                
+
                     <div class=" bg-card-details col-10  p-3 row justify-content-center">
                         <div class="col-xl-6 col-12 pb-3 ">
-                            
+
                             <h3 class="text-center">
                                 <%= customer.name%>
                                     <%=customer.surname%>
@@ -80,6 +80,11 @@
                                                 <%= course.status %>
                                             </strong></li>
                                         <% } %>
+                                            <% if (course.course_completed==1 ) { %>
+                                                <li>Corso completato: SI</li>
+                                                <% } else { %>
+                                                    <li>Corso completato: NO</li>
+                                                    <% } %>
                         </ul>
                         <div class="text-center mt-4">
                             <button class="btn me-2 mb-2 btn-info"><a class="no text-light"
@@ -93,11 +98,11 @@
                         </div>
 
                     </div>
-                    
-                <% }); %>
+
+                    <% }); %>
             </div>
         </div>
-        
+
 
         <div class="col-12 d-flex justify-content-center py-5">
             <a class="no text-light" href="/user/dashboard/customers"><button class="btn btn-danger"><i

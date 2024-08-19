@@ -1,14 +1,11 @@
 {
     "development": {
-        "username": "CloudSA01afe6ce",
-        "password": "mglazuredatabase2024!!",
-        "database": "mglmanagement-db",
-        "port": 1433,
-        "host": "mglmanagement.database.windows.net",
-        "dialect": "mssql",
-        "dialectOptions": {
-            "encrypt": true
-        }
+        "username": "root",
+        "password": "",
+        "database": "mgl-management-test",
+        "port": 3306,
+        "host": "localhost",
+        "dialect": "mysql"
     },
     "test": {
         "username": "root",

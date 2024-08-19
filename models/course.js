@@ -1,6 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
-const Customer = require('./customer')
+const { Customer } = require('../models/index')
 module.exports = (sequelize, DataTypes) => {
   class Course extends Model {
     /**
@@ -40,6 +40,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false // Imposta su false di default
+    },
+    course_completed: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     },
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,

@@ -13,12 +13,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Guest.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     lastName: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    fiscal_code: {
+      type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
     },
     email: {

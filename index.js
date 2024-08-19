@@ -15,6 +15,7 @@ const methodOverride = require('method-override')
 const ensureAuthenticatedGuest = require('./app/middleware/authenticated-guest')
 const ensureAuthenticatedUser = require('./app/middleware/authenticated-user')
 const port = process.env.PORT;
+console.log(process.env.NODE_ENV, process.env.PORT)
 
 // ROTTE
 const loginRouter = require('./app/routes/login');
