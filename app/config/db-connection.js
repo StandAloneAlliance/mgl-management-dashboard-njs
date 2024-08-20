@@ -2,16 +2,6 @@
 const Sequelize = require('sequelize');
 require('dotenv').config()
 
-// const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
-//     host: process.env.DB_HOST,
-//     dialect: 'mssql',
-//     dialectOptions: {
-//         options: {
-//             requestTimeout: 30000 // 30 secondi di timeout
-//         }
-//     }
-// })
-
 const sequelize = new Sequelize(process.env.DB_NAME_TEST, process.env.DB_USERNAME_TEST, process.env.DB_PASSWORD_TEST, {
     host: process.env.DB_HOST_TEST,
     dialect: process.env.DB_CONNECTION_TEST,
@@ -23,6 +13,7 @@ const sequelize = new Sequelize(process.env.DB_NAME_TEST, process.env.DB_USERNAM
             dateFirst: 1,
         },
     },
+    logging: console.log
 });
 
 module.exports = sequelize;

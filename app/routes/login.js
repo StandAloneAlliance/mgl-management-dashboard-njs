@@ -26,7 +26,7 @@ router.post('/login', (req, res, next) => {
 
 // ROTTE DI LOGIN PER I GUEST
 router.get('/guest-login', (req, res) => {
-    if (req.isAuthenticated()) return res.redirect('/guest/dashboard')
+    if (req.isAuthenticated()) return res.redirect('/guest-dashboard')
     res.render('guest-login', { message: req.flash('loginFallito') });
 })
 
@@ -35,11 +35,23 @@ router.post('/guest-login', (req, res, next) => {
         if (err) {
             return next(err);
         }
+        passport_guests.authenticate('local-guest-login', (err, user, info) => {
+            if (err) {
+                return next(err);
+            }
+            if (!user) {
+                console.log('Autenticazione fallita:', info.message);
+                return res.redirect('/guest-login');
+            }
 
-        passport_guests.authenticate('local-guest-login', {
-            successRedirect: '/guest/dashboard',
-            failureRedirect: '/guest-login',
-            failureFlash: true
+            req.logIn(user.guest, (err) => {
+                if (err) {
+                    return next(err);
+                }
+
+                return res.redirect('/guest-dashboard')
+                // return res.render('guest-dashboard', { guest: user.guest, courses: user.courses });
+            });
         })(req, res, next);
     });
 });

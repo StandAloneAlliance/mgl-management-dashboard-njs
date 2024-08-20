@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 
 // RECUPERO IL MODEL USER DALL'INDEX.JS CHE GESTISCE I MODEL
 const User = require('../../models/index').User
-const { Guest } = require('../../models/index')
+const { Guest, Customer } = require('../../models/index')
 const router = express.Router()
 
 // CREO LA ROTTA GET PER LA REGISTRAZIONE NELLA VIEW register.ejs
@@ -52,13 +52,9 @@ router.get('/guest-register', (req, res) => {
 // ROTTA PER LA REGISTRAZIONE DELL'UTENTE NELLA VIEW register.ejs
 router.post('/guest-register', async (req, res) => {
     try {
-        const { firstName, lastName, email, phonenumber, password } = req.body;
+        const { firstName, lastName, fiscal_code, email, phonenumber, password } = req.body;
 
-        // Debug: Verifica che i campi siano stati estratti correttamente
-        console.log(firstName, lastName, email, phonenumber, password);
-        console.log(req.body)
-
-
+        const existing_customer = await Customer.findOne({ where: { cfr: fiscal_code } })
         // EFFETTUO UN CONTROLLO SE L'UTENTE CHE STA PER EFFETTUARE LA REGISTRAZIONE HA UN EMAIL GIA SALVATA NEL DB
         const existing_guest = await Guest.findOne({ where: { email: email } })
         // STAMPO L'ERRORE 
@@ -72,12 +68,23 @@ router.post('/guest-register', async (req, res) => {
         const guest = await Guest.create({
             firstName,
             lastName,
+            fiscal_code,
             email,
             phonenumber,
             password: hashed_pw,
         });
-        res.status(200)
-        res.redirect('/guest/dashboard')
+
+        let courses = []
+
+        if (existing_customer) {
+            courses = await existing_customer.getCourses()
+            console.log(courses)
+            console.log(`Customer esistente trovato. Corsi associati: ${courses.length}`);
+        } else {
+            console.log('Nessun customer esistente trovato, nessun corso associato.');
+        }
+
+        res.render('guest-dashboard', { guest: guest, courses })
     } catch (error) {
         // ALTRIMENTI STAMPO L'ERRORE 500
         console.error(error)

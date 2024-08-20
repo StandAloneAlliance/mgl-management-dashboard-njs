@@ -18,18 +18,31 @@
 
                 </div>
                 <div class='text-center text-light row justify-content-center mt-5 jumbotron  py-5'>
-                    <div class='col-12 col-xl-8 pb-3'>
+                    <h1>Benvenuto, <%= guest.firstName %>
+                            <%= guest.lastName %>
+                    </h1>
 
-                        <h4 class="color-blue">Benvenuto nella tua dashboard personale <%= guest.firstName %>
-                                <%= guest.lastName%>
+                    <% if (courses.length> 0) { %>
+                        <h2>I tuoi corsi:</h2>
+                        <ul>
+                            <% courses.forEach(course=> { %>
+                                <li>
+                                    <strong>Corso:</strong>
+                                    <%= course.nome_corso %>
+                                        <% if (course.course_completed==1) { %>
+                                            <a href="/attestation/download/<%= course.paymentToken %>">Scarica
+                                                Attestato</a>
+                                            <% } else { %>
+                                                <p>Il corso non è ancora completato.</p>
+                                                <% } %>
+                                </li>
+                                <% }); %>
+                        </ul>
+                        <% } else { %>
+                            <p>Non sei iscritto a nessun corso attualmente.</p>
+                            <% } %>
 
-                        </h4>
-                        <p>La dashboard per la gestione dei corsisti presenta una tabella dinamica che elenca tutti i
-                            partecipanti ai corsi, organizzati in modo chiaro e intuitivo. Ogni corsista è rappresentato
-                            da una card singola e modificabile, che offre un riepilogo delle informazioni personali come
-                            nome, contatti e stato attuale del corso. Attraverso la tabella, gli amministratori possono
-                            facilmente visualizzare e filtrare i corsisti per criteri specifici </p>
-                    </div>
+
 
                 </div>
                 <p class="text-center pt-3">Invece se proprio vuoi...... <i

@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const { Guest } = require('../../models/index');
+const { Guest, Customer, Course } = require('../../models/index');
 const bcrypt = require('bcrypt');
 
 // Strategia per i guest
@@ -20,7 +20,19 @@ passport.use('local-guest-login', new LocalStrategy({
             return done(null, false, { message: 'Password non valida' });
         }
 
-        return done(null, guest);
+        const customer = await Customer.findOne({ where: { cfr: guest.fiscal_code } })
+        let courses = []
+        if (customer) {
+            courses = await Course.findAll({
+                include: [{
+                    model: Customer,
+                    through: { attributes: [] }
+                }]
+            });
+            console.log(courses)
+        }
+
+        return done(null, { guest, courses });
     } catch (error) {
         return done(error);
     }
