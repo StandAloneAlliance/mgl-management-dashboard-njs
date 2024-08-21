@@ -49,7 +49,7 @@ router.post('/guest-login', (req, res, next) => {
                     return next(err);
                 }
 
-                return res.redirect('/guest-dashboard')
+                return res.redirect('/guest/dashboard')
                 // return res.render('guest-dashboard', { guest: user.guest, courses: user.courses });
             });
         })(req, res, next);

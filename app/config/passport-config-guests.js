@@ -29,7 +29,6 @@ passport.use('local-guest-login', new LocalStrategy({
                     through: { attributes: [] }
                 }]
             });
-            console.log(courses)
         }
 
         return done(null, { guest, courses });
