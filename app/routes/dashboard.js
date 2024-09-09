@@ -12,7 +12,7 @@ router.get('/dashboard', (req, res) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/login')
     }
-    res.render('dashboard', { user: req.user })
+    res.render('admin/dashboard', { user: req.user })
 })
 
 router.get('/dashboard/customers', async (req, res) => {
@@ -21,7 +21,7 @@ router.get('/dashboard/customers', async (req, res) => {
     }
     try {
         const customers = await Customer.findAll()
-        res.render('customers/index-customers', { customers: customers })
+        res.render('admin/customers/index-customers', { customers: customers })
     } catch (error) {
         console.error(error)
         res.status(500).send('Errore del server')
@@ -32,7 +32,7 @@ router.get('/dashboard/customers/create-customers', (req, res) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/login')
     }
-    res.render('customers/create-customers', { formData: req.body })
+    res.render('admin/customers/create-customers', { formData: req.body })
 })
 
 
@@ -79,7 +79,7 @@ router.get('/dashboard/customers/:id', async (req, res) => {
         // VERIFICO SE IL CORISTA ESISTE
         if (customer) {
             // SE IL CORSISTA è STATO TROVATO DO IL RENDER SULLA VIEW
-            res.render('customers/customer-details', { customer: customer, courses: courses });
+            res.render('admin/customers/customer-details', { customer: customer, courses: courses });
         } else {
             // Se il corsista non è stato trovato, restituisci un messaggio di errore o reindirizza a una pagina di errore
             res.status(404).send('Corsista non trovato');
@@ -109,7 +109,7 @@ router.get('/dashboard/customers/:id/assign-courses', async (req, res) => {
         // const customer = await Customer.findByPk(customerId);
 
         // Passa le informazioni del corsista alla vista
-        res.render('customers/assign-courses', { customerId: customerId, courses: courses });
+        res.render('admin/customers/assign-courses', { customerId: customerId, courses: courses });
     } catch (error) {
         // Gestisci gli errori qui
         console.error(error);
@@ -202,7 +202,7 @@ router.get('/dashboard/customers/:customerId/edit', async (req, res) => {
         if (!customer) {
             return res.status(404).redirect(`user/dashboard/customers/${customerId}`);
         }
-        res.render('customers/update-customers', { customer: customer }); // Assicurati di passare correttamente il cliente al template
+        res.render('admin/customers/update-customers', { customer: customer }); // Assicurati di passare correttamente il cliente al template
     } catch (error) {
         console.error('Error retrieving customer details:', error);
         res.status(500).send('Internal Server Error');
@@ -246,7 +246,7 @@ router.get('/dashboard/customers/:customerId/courses/:courseId/edit', async (req
         if (!course) {
             return res.status(404).json({ error: 'Corso non trovato' });
         }
-        res.render('courses/edit-courses', { customerId: customerId, courseId: courseId, course: course, courses: courses })
+        res.render('admin/courses/edit-courses', { customerId: customerId, courseId: courseId, course: course, courses: courses })
 
     } catch (error) {
 

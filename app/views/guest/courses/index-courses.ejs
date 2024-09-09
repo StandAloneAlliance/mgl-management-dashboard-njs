@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <main>
+        <% if (courses.length> 0) { %>
+            <h2>I tuoi corsi:</h2>
+            <ul>
+                <% courses.forEach(course=> { %>
+                    <li>
+                        <strong>Corso:</strong>
+                        <%= course.nome_corso %>
+                            <% if (course.course_completed==1) { %>
+                                <a href="/attestation/download/<%= course.paymentToken %>">Scarica
+                                    Attestato</a>
+                                <% } else { %>
+                                    <p>Il corso non è ancora completato.</p>
+                                    <% } %>
+                    </li>
+                    <% }); %>
+            </ul>
+            <% } else { %>
+                <p>Non sei iscritto a nessun corso attualmente.</p>
+                <% } %>
+
+    </main>
+</body>
+
+</html>

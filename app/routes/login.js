@@ -6,7 +6,7 @@ const passport_guests = require('../config/passport-config-guests')
 // ROTTE DI LOGIN PER USER
 router.get('/login', (req, res) => {
     if (req.isAuthenticated()) return res.redirect('/user/dashboard');
-    res.render('login', { message: req.flash('loginFallito') });
+    res.render('auth/login', { message: req.flash('loginFallito') });
 });
 
 router.post('/login', (req, res, next) => {
@@ -27,7 +27,7 @@ router.post('/login', (req, res, next) => {
 // ROTTE DI LOGIN PER I GUEST
 router.get('/guest-login', (req, res) => {
     if (req.isAuthenticated()) return res.redirect('/guest-dashboard')
-    res.render('guest-login', { message: req.flash('loginFallito') });
+    res.render('auth/guest-login', { message: req.flash('loginFallito') });
 })
 
 router.post('/guest-login', (req, res, next) => {

@@ -8,7 +8,7 @@ const router = express.Router()
 
 // CREO LA ROTTA GET PER LA REGISTRAZIONE NELLA VIEW register.ejs
 router.get('/register', (req, res) => {
-    res.render('register')
+    res.render('auth/register')
 })
 
 
@@ -46,7 +46,7 @@ router.post('/register', async (req, res) => {
 })
 
 router.get('/guest-register', (req, res) => {
-    res.render('guest-register')
+    res.render('auth/guest-register')
 })
 
 // ROTTA PER LA REGISTRAZIONE DELL'UTENTE NELLA VIEW register.ejs

@@ -2,22 +2,23 @@
 <html lang="en">
 
 <head>
-    <%- include('../partials/head') %>
+    <%- include('../../partials/head') %>
 </head>
 
 <body class="bg-table garamond">
     <div class="container py-5">
         <div class="d-flex  justify-content-center align-items-center">
             <i class=" pe-3 fa-solid fa-beat-fade text-success font-user  fa-circle-plus"></i>
-            <h2 class="text-center"><span class="text-success"> In questa pagina potrai modificare tutti i dati del corsista inseriti in precedenza</span></h2>
+            <h2 class="text-center"><span class="text-success"> In questa pagina potrai modificare tutti i dati del
+                    corsista inseriti in precedenza</span></h2>
         </div>
         <div class="row justify-content-center">
             <div class="col-8 ">
                 <div class="card my-3">
                     <div class="card-body">
 
-                        <form action="/user/dashboard/customers/create-customers" method="POST" id="createRestaurantForm"
-                            class="card shadow bg-body-tertiary p-2">
+                        <form action="/user/dashboard/customers/create-customers" method="POST"
+                            id="createRestaurantForm" class="card shadow bg-body-tertiary p-2">
                             <!-- Card Header -->
                             <div class="card-header bg-white py-3">
                                 <!-- Create Title -->
@@ -30,10 +31,11 @@
                                     <!-- Name Label -->
                                     <label class="control-label my-2">Nome *</label>
                                     <!-- Name Input Text -->
-                                    <input type="text" name="name" id="name" placeholder="Inserisci il nome del corsista"
-                                        class="form-control" value="">
+                                    <input type="text" name="name" id="name"
+                                        placeholder="Inserisci il nome del corsista" class="form-control" value="">
                                     <!-- Name Error Text -->
-                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path === 'name')) { %>
+                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path === 'name')) {
+                                        %>
                                         <div class="text-danger">
                                             <%= errors.find(error=> error.path === 'name').msg %>
                                         </div>
@@ -47,7 +49,8 @@
                                     <input type="text" name="surname" id="surname"
                                         placeholder="Inserisci il cognome del corsista" class="form-control" value="">
                                     <!-- Surname Error Text -->
-                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path === 'surname')) { %>
+                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path ===
+                                        'surname')) { %>
                                         <div class="text-danger">
                                             <%= errors.find(error=> error.path === 'surname').msg %>
                                         </div>
@@ -59,9 +62,11 @@
                                     <label class="control-label my-2">Codice Fiscale *</label>
                                     <!-- Customer C.F. Input Text -->
                                     <input type="text" name="cfr" id="cfr"
-                                        placeholder="Inserisci il codice fiscale del corsista" class="form-control" value="">
+                                        placeholder="Inserisci il codice fiscale del corsista" class="form-control"
+                                        value="">
                                     <!-- Customer C.F. Error Text -->
-                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path === 'cfr')) { %>
+                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path === 'cfr')) {
+                                        %>
                                         <div class="text-danger">
                                             <%= errors.find(error=> error.path === 'cfr').msg %>
                                         </div>
@@ -72,10 +77,11 @@
                                     <!-- Email Label -->
                                     <label class="control-label my-2">Email</label>
                                     <!-- Email Input Text -->
-                                    <input type="email" name="email" id="email" placeholder="Inserisci l'email del corsista"
-                                        class="form-control" value="">
+                                    <input type="email" name="email" id="email"
+                                        placeholder="Inserisci l'email del corsista" class="form-control" value="">
                                     <!-- Email Error Text -->
-                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path === 'email')) { %>
+                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path === 'email'))
+                                        { %>
                                         <div class="text-danger">
                                             <%= errors.find(error=> error.path === 'email').msg %>
                                         </div>
@@ -87,9 +93,11 @@
                                     <label class="control-label my-2">Città di nascita *</label>
                                     <!-- Customer City Of Birth Input Text -->
                                     <input type="text" name="city_of_birth" id="city_of_birth"
-                                        placeholder="Inserisci la città di nascita del corsista" class="form-control" value="">
+                                        placeholder="Inserisci la città di nascita del corsista" class="form-control"
+                                        value="">
                                     <!-- Customer City Of Birth Error Text -->
-                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path === 'city_of_birth'))
+                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path ===
+                                        'city_of_birth'))
                                         { %>
                                         <div class="text-danger">
                                             <%= errors.find(error=> error.path === 'city_of_birth').msg %>
@@ -103,7 +111,8 @@
                                     <!-- Customer Date Of Birth Input File -->
                                     <input type="date" name="date_of_birth" id="date_of_birth" class="form-control">
                                     <!-- Customer Date Of Birth Error Text -->
-                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path === 'date_of_birth'))
+                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path ===
+                                        'date_of_birth'))
                                         { %>
                                         <div class="text-danger">
                                             <%= errors.find(error=> error.path === 'date_of_birth').msg %>
@@ -115,10 +124,11 @@
                                     <!-- Customer Task Of Birth Label -->
                                     <label class="control-label my-2">Mansione</label>
                                     <!-- Customer Task Input Text -->
-                                    <input type="text" name="task" id="task" placeholder="Inserisci il cognome del corsista"
-                                        class="form-control" value="">
+                                    <input type="text" name="task" id="task"
+                                        placeholder="Inserisci il cognome del corsista" class="form-control" value="">
                                     <!-- Customer Task Error Text -->
-                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path === 'task')) { %>
+                                    <% if (typeof errors !=='undefined' && errors.find(error=> error.path === 'task')) {
+                                        %>
                                         <div class="text-danger">
                                             <%= errors.find(error=> error.path === 'task').msg %>
                                         </div>
@@ -135,7 +145,9 @@
                                 </div>
                                 <!-- Create Submit Button -->
                                 <div class="col-12 d-flex justify-content-center align-items-center my-5">
-                                    <button type="submit" class="btn text-light btn-success fw-bold py-2"><i class="fa-solid fa-circle-plus"></i><span class="ps-2">Aggiungi</span></button>
+                                    <button type="submit" class="btn text-light btn-success fw-bold py-2"><i
+                                            class="fa-solid fa-circle-plus"></i><span
+                                            class="ps-2">Aggiungi</span></button>
                                 </div>
                             </div>
                         </form>
@@ -145,7 +157,9 @@
         </div>
     </div>
     <div class="col-12 d-flex justify-content-center pt-3">
-        <a class="no text-light" href="/user/dashboard/customers"><button class="btn btn-danger"><i class="fa-solid fa-person-walking-dashed-line-arrow-right pe-2"></i>Torna alla dashboard</button></a>
+        <a class="no text-light" href="/user/dashboard/customers"><button class="btn btn-danger"><i
+                    class="fa-solid fa-person-walking-dashed-line-arrow-right pe-2"></i>Torna alla
+                dashboard</button></a>
     </div>
 </body>
 
